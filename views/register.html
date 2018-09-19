@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Register</title>
+</head>
+<body>
+  <h2 class="text-center"> Register</h2>
+
+  <div class="container register">
+
+  <form action="/register" method="POST">
+    <label for "fileupload">Image URL</label>
+    <input id="fileupload" type="fileupload" name="full_name" placeholder="Enter your Filpath"> <br/>
+
+<!--     <input id="fileupload" type="file" src="/wp-content/uploads/sendform.png" name="fileupload" placeholder="compose your url path">
+ -->
+<div class="form-group">
+
+<label for="full_name">Full Name</label>
+<input id="full_name" type="full_name" name="full_name" placeholder="Enter your Full Name"> <br/>
+</div>
+
+<div class="form-group">
+
+    <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="Enter an email"> <br/>
+</div>
+
+<div class="form-group">
+
+    <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Enter a password" ><br/>
+</div>
+  <input type = "submit" value="Register" class="button" align="center">
+
+</form>
+</div>
+
+</body>
+</html>
