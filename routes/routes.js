@@ -45,9 +45,6 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
-<<<<<<< HEAD
-    res.send('register post route');
-=======
     const newUser = {
       name: req.body.name,
       email: req.body.email,
@@ -58,7 +55,6 @@ app.route('/register')
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
->>>>>>> feature/new-routes
   });
 
 //  New Resource Page
