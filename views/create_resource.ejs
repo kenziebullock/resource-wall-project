@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>create new resource</title>
+
+<head>
+        <% include partials/head %>
+
+      <% include partials/header %>
 </head>
+
 <body>
-        <% include partials/header %>
 
-  <h2>Create Resource</h2>
+    <main role="main" class="wrapper" >
+      <div class=" newform ">
+        <div class="justify-content-center align-items-center">
+          <form class="" action="/resources/new" method="post">
+            <h2 class="text-center">Create Resource</h2>
 
-<main role="main" class="wrapper" >
-<div class="newform">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" placeholder="Enter title">
+            </div>
 
-<form class="" action="/new_resource" method="POST">
+            <div class="form-group">
+              <label for="url">Url</label>
+              <input type="text" name="url" class="form-control" value="http://">
+            </div>
 
-<div class="form-group">
-<label for="title">Title</label>
-<input id="title" type="title" name="title" placeholder="Enter title"> <br/>
-</div>
+            <div class="form-group">
+              <label for="topic">Topics</label>
+              <select multiple class="form-control" name="topic">
+                <option value="1">Networking</option>
+                <option value="2">Design</option>
+                <option value="3">Playing</option>
+                <option value="4">Food</option>
+                <option value="5">Engineering</option>
+                <option value="8">Sports</option>
+                <option value="9">Health</option>
+              </select>
+            </div>
 
-<div class="form-group">
-<label for="url">URL</label>
-<input id="url" type="url" name="url" placeholder="Enter url"> <br/>
-</div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
 
-<div class="form-group">
-<label for="topic">Topics</label>
-<input id="topic" type="topic" name="topic" placeholder="Enter your topic"> <br/>
-</div>
+            <button type="submit" class="btn btn-primary" >Create Resource</button>
+          </form>
+        </div>
+      </div>
+    </main>
 
-<div class="form-group">
-<label for="discription">Discription</label>
-<input id="discription" type="discription" name="discription"> <br/>
-</div>
 
-  <input type = "submit" value="Create resource" class="button" align="center">
-
-</form>
-</div>
-</main>
 </body>
+
 </html>
