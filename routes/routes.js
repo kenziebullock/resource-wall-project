@@ -85,7 +85,7 @@ app.route('/create_resource')
 app.route('/resources')
   .get((req, res) => {
     resourceHelper.showResources((allResources) => {
-      res.render('index', allResources);
+      res.render('resources', { allResources });
     })
   });
 
