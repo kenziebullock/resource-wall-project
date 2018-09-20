@@ -50,7 +50,7 @@ app.route('/register')
     const newUser = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.email,
+      password: req.body.password,
       avatar: req.body.avatar
     }
     func.generateUser(newUser, () => {
