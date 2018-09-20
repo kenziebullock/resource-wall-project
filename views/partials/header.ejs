@@ -16,55 +16,16 @@
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
-    <!-- custom style sheet -->
-<!--     <link rel="stylesheet" type="text/css" href="/styles/styles.css">
- -->
-<style>
- html {
-  line-height: 1.15;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; }
+    crossorigin="anonymous">
 
-body {
-  margin: 0; }
+    </script>
+     <link rel="stylesheet" type="text/css" href="../../public/styles/styles.css">
 
-header, nav, section {
-  display: block; }
+  </head>
 
-h1 {
-  font-size: 2em;
-  margin: .67em 0; }
-  .navbar-toggler {
-  width: 40px;
-  height: 40px;
-  background-color: #ff3641;
-  color: white; }
-
-.navbar {
-  color: #ff3641;
-  background-color: #778899; }
-
-.btn {
-  background-color: #ff3641;
-  color: white;
-  margin: 0 5px; }
-
-.search {
-  padding: 25px 20px;
-  margin: 0;
-  width: 400px; }
-  .search input {
-    width: 150px; }
-
-</style>
-</head>
-
-  <body>
-
+<body>
 <nav class="navbar navbar-expand-md fixed-top bg-dar">
-
-  <button class="navbar-toggler fas fa-bars btn" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+<button class="navbar-toggler fas fa-bars btn" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
 
@@ -76,33 +37,32 @@ h1 {
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <form action="/login" method="post">
-              <button type="submit" class="btn">Login
-              </button>
+            <form action="/logout" method="post">
+              <button type="submit" class="btn">Logout </button>
             </form>
           </li>
           <li class="nav-item">
-            <form action="/users/<%= userId %>" method="get">
+            <form action="/update_profile" method="get">
               <button type="submit" class="btn">Profile</button>
             </form>
           </li>
           <li class="nav-item">
-            <form action="/users/<%= userId %>/resources" method="get">
+            <form action="/resource_show" method="get">
               <button type="submit" class="btn">My Posts</button>
             </form>
           </li>
           <li class="nav-item">
-            <form action="/users/<%= userId %>/likes" method="get">
+            <form action="/users/" method="get">
               <button type="submit" class="btn">My Likes</button>
             </form>
           </li>
           <li class="nav-item">
-            <form action="/resources/new" method="get">
+            <form action="/create_resource/" method="get">
               <button type="submit" class="btn">New Post</button>
             </form>
           </li>
           <li>
-            <span class="navbar-brand mb-0 h1">Welcome back, <%= userName %> </span>
+            <span class="navbar-brand mb-0 h1">Welcome back, </span>
           </li>
         </ul>
       </div>
@@ -110,7 +70,5 @@ h1 {
           <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search">
           <button class="btn my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-
 </body>
 </html>
