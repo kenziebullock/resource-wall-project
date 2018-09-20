@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const func = require('../public/scripts/helper-functions');
+const func = require('../lib/user-helper');
 const middleware = require('../middleware');
 
 // Home page
@@ -22,11 +22,11 @@ app.route('/login')
   }) 
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
-
-    // func.errorCheck(req, res);
-    // func.userAuthentication(req, res);
-    console.log('middleware pass');
-
+    const users = {
+      email: req.body.email,
+    }
+    func.loginUser(users, res.redirect);
+    
   });
 
 // logout current user
@@ -44,11 +44,8 @@ app.route('/register')
     func.loginCheck(req, res);
     res.render('register');
   })
-  .post(middleware.registerValidator, (req, res) => {
+  .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
-    func.errorCheck(req, res);
-
-
     res.send('register post route');
   });
 

@@ -45,11 +45,12 @@ const middleware = {
       if (rows.length === 1){
         return next();
       } else {
-        // res.send('Invalid login credentials');
-        res.redirect('/login')
+        res.send('Invalid login credentials');
+        // res.redirect('/login')
       }
     })
   },
+
 }
 
 
