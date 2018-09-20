@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const func = require('../lib/user-helper');
+const resourceHelper = require('../lib/resource-helper');
 const middleware = require('../middleware');
 
 // Home page
@@ -54,7 +55,6 @@ app.route('/register')
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
-    res.send('register post route');
   });
 
 //  New Resource Page
@@ -151,15 +151,27 @@ app.route('/users/:id')
 
 app.route('/users/:id/update')
   .get((req, res) => {
-    res.render('update_profile');
+    const user = req.params.id;
+    res.render('update_profile', user);
   })
   .post((req, res) => {
-    res.send('users/:id/update post route');
+    const updatedUserInfo = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      avatar: req.body.avatar
+    }
+    func.updateUser(updatedUserInfo, () => {
+      req.session.email = newUser.email;
+      res.render('index', {user: updatedUserInfo});
+    })
   })
 
 app.route('/users/:id/resources')
   .get((req, res) => {
-    res.send('/users/:id/resources');
+    const user = req.params.id;
+    // function to get users created/liked resources
+
   })
 
 app.route('/*').get((req, res) => {
