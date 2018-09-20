@@ -1,0 +1,40 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">URL</th>
+                <th scope="col">Topic</th>
+                <th scope="col">Likes</th>
+                <th scope="col">Average</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% allResources.forEach(function(resource, index) { %>
+                  <tr>
+                    <th scope="row"><%= index + 1%></th>
+                    <td><%= resource.title %></td>
+                    <td><%= resource.description %></td>
+                    <td><%= resource.url %></td>
+                    <td><%= resource.topic %></td>
+                    <td><%= resource.likes %></td>
+                    <% if (resource.avg) { %>
+                      <td><%= Number(resource.avg).toFixed(2) %></td>
+                    <% } else { %>
+                      <td>No Rate Yet</td>
+                    <% } %>
+                  </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        
+        
+    </div>
+  </div>
+</div>

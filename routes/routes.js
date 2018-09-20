@@ -74,7 +74,7 @@ app.route('/create_resource')
       
     }
     const user = req.session.email;
-    resourceHelper.createNewResource(newResource, user, () => {
+    func.createNewResource(newResource, user, () => {
       res.render('index');
     });
     
