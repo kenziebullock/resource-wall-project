@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const func = require('../lib/user-helper');
+const userHelper = require('../lib/user-helper');
 const resourceHelper = require('../lib/resource-helper');
 const middleware = require('../middleware');
 
@@ -16,14 +16,17 @@ app.get("/index", (req, res) => {
 // Login Page
 app.route('/login')
   .get((req, res) => {
-    func.loginCheck(req, res);
+    userHelper.loginCheck(req, res);
     res.render('login');
   })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
-    const user = { email: req.body.email }
+    const user = {
+      email: req.body.email,
+      
+    }
 
-    func.loginUser(user, (foundUser) => {
+    userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
       res.render('index', {user: foundUser});
     });
@@ -40,7 +43,7 @@ app.route('/logout')
 // Registration Page
 app.route('/register')
   .get((req, res) => {
-    func.loginCheck(req, res);
+    userHelper.loginCheck(req, res);
     res.render('register');
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
@@ -51,7 +54,7 @@ app.route('/register')
       password: req.body.password,
       avatar: req.body.avatar
     }
-    func.generateUser(newUser, () => {
+    userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
@@ -71,13 +74,13 @@ app.route('/create_resource')
       url: req.body.url,
       topic: req.body.topic,
       description: req.body.description,
-      
+
     }
     const user = req.session.email;
-    func.createNewResource(newResource, user, () => {
+    resourceHelper.createNewResource(newResource, user, () => {
       res.render('index');
     });
-    
+
   });
 
 // View all resources
@@ -96,7 +99,7 @@ app.route('/resources/:id')
 
     // function to check if resource exists
     // and return that resource
-    
+
     const resourceId = req.params.id;
     resourceHelper.getResource(resourceId, (resource) => {
       res.render('resource-show', resource);
@@ -127,7 +130,7 @@ app.route('/resources/:id/rate')
 
 app.route('/resources/:id/like')
   .post((req, res) => {
-    
+
     // function to check if there is a like and like if there is none, remove like if there is one
     const like = req.body.like;
     resourceHelper.newLike(like, () => {
@@ -139,7 +142,7 @@ app.route('/resources/:id/like')
 
 app.route('/users/:id')
   .get((req, res) => {
-    
+
     // function to get user profile page
     const user = req.params.id;
     func.getUser(user, (user) => {
@@ -179,4 +182,3 @@ app.route('/*').get((req, res) => {
   });
 
 module.exports = app;
-
