@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express.Router();
 const func = require('../public/scripts/helper-functions');
-// const users = require('./users');
 
 // Home page
 app.get("/", (req, res) => {
@@ -17,14 +16,15 @@ app.get("/index", (req, res) => {
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
+    
     res.render('login', func.templateVars);
   }) 
 
   .post((req, res) => {
-    // func.loginCheck(req, res);
+
     func.errorCheck(req, res);
     func.userAuthentication(req, res);
-    res.render('')
+
   });
 
 // logout current user

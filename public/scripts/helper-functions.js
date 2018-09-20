@@ -1,3 +1,8 @@
+const ENV         = process.env.ENV || "development";
+const knexConfig  = require("../../knexfile");
+const knex        = require("knex")(knexConfig[ENV]);
+
+
 module.exports = {
 
   errorCheck: function(req, res) {
@@ -13,7 +18,7 @@ module.exports = {
   },
 
   userAuthentication: function(req, res) {
-    
+
     if (req.body.email === 'alice@gmail.com' && req.body.password === 'alice') {
       req.session.email = req.body.email;
       return res.redirect('/');
