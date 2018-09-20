@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
 const func = require('../public/scripts/helper-functions');
+const middleware = require('../middleware');
 
 // Home page
 app.get("/", (req, res) => {
@@ -20,10 +21,11 @@ app.route('/login')
     res.render('login', func.templateVars);
   }) 
 
-  .post((req, res) => {
+  .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
 
-    func.errorCheck(req, res);
-    func.userAuthentication(req, res);
+    // func.errorCheck(req, res);
+    // func.userAuthentication(req, res);
+    console.log('middleware pass');
 
   });
 
@@ -42,7 +44,7 @@ app.route('/register')
     func.loginCheck(req, res);
     res.render('register');
   })
-  .post((req, res) => {
+  .post(middleware.registerValidator, (req, res) => {
     // registration
     func.errorCheck(req, res);
 
