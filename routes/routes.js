@@ -17,15 +17,16 @@ app.get("/index", (req, res) => {
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
-    
-    res.render('login', func.templateVars);
-  }) 
+    res.render('login');
+  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
-    const users = {
-      email: req.body.email,
-    }
-    func.loginUser(users, res.redirect);
+    const user = { email: req.body.email }
+
+    func.loginUser(user, (foundUser) => {
+      req.session.email = foundUser.email;
+      res.render('index', {user: foundUser});
+    });
     
   });
 
@@ -46,6 +47,16 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
+    const newUser = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      avatar: req.body.avatar
+    }
+    func.generateUser(newUser, () => {
+      req.session.email = newUser.email;
+      res.render('index', {user: newUser});
+    })
     res.send('register post route');
   });
 
