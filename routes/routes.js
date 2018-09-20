@@ -28,6 +28,7 @@ app.route('/login')
 
     userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
+      req.session.user_id = foundUser.id;
       res.render('index', {user: foundUser});
     });
     
@@ -62,12 +63,12 @@ app.route('/register')
 
 //  New Resource Page
 
-app.route('/create_resource')
+app.route('/resources/new')
   .get((req, res) => {
     res.render('create_resource');
   })
 
-  .post((req, res) => {
+  .post(middleware.isLogin, (req, res) => {
     // function to create new resource
     const newResource = {
       title: req.body.title,
@@ -77,8 +78,8 @@ app.route('/create_resource')
 
     }
     const user = req.session.email;
-    resourceHelper.createNewResource(newResource, user, () => {
-      res.render('index');
+    resourceHelper.createNewResource(newResource, user, (err, newResource) => {
+      res.redirect('/resources');
     });
 
   });
