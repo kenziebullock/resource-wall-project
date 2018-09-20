@@ -12,7 +12,6 @@ const middleware = {
     const email = req.body.email.toLowerCase();
     knex.select('*').from('users').where({email})
     .then((rows) => {
-      console.log(rows);
       if (rows.length === 0){
         console.log('valid registeration');
         return next();

@@ -5,11 +5,11 @@ const middleware = require('../middleware');
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("create_resource");
+  res.render("index");
 });
 
-app.get("/create_resource", (req, res) => {
-    res.render("create_resource");
+app.get("/index", (req, res) => {
+    res.render("index");
 });
 
 
