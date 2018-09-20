@@ -47,6 +47,16 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
+    const newUser = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.email,
+      avatar: req.body.avatar
+    }
+    func.generateUser(newUser, () => {
+      req.session.email = newUser.email;
+      res.render('index', {user: newUser});
+    })
     res.send('register post route');
   });
 
