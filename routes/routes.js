@@ -17,15 +17,16 @@ app.get("/index", (req, res) => {
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
-    
-    res.render('login', func.templateVars);
-  }) 
+    res.render('login');
+  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
-    const users = {
-      email: req.body.email,
-    }
-    func.loginUser(users, res.redirect);
+    const user = { email: req.body.email }
+
+    func.loginUser(user, (foundUser) => {
+      req.session.email = foundUser.email;
+      res.render('index', {user: foundUser});
+    });
     
   });
 
