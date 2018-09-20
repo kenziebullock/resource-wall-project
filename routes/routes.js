@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
-const func = require('../lib/user-helper');
+const userHelper = require('../lib/user-helper');
+const resourceHelper = require('../lib/resource-helper');
 const middleware = require('../middleware');
 
 // Home page
@@ -16,14 +17,14 @@ app.get("/index", (req, res) => {
 // Login Page
 app.route('/login')
   .get((req, res) => {
-    func.loginCheck(req, res);
+    userHelper.loginCheck(req, res);
     res.render('login');
   })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const user = { email: req.body.email }
 
-    func.loginUser(user, (foundUser) => {
+    userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
       res.render('index', {user: foundUser});
     });
@@ -42,7 +43,7 @@ app.route('/logout')
 
 app.route('/register')
   .get((req, res) => {
-    func.loginCheck(req, res);
+    userHelper.loginCheck(req, res);
     res.render('register');
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
@@ -53,7 +54,7 @@ app.route('/register')
       password: req.body.password,
       avatar: req.body.avatar
     }
-    func.generateUser(newUser, () => {
+    userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
