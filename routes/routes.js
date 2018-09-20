@@ -43,7 +43,7 @@ app.route('/logout')
 // Registration Page
 app.route('/register')
   .get((req, res) => {
-    func.loginCheck(req, res);
+    userHelper.loginCheck(req, res);
     res.render('register');
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
@@ -54,7 +54,7 @@ app.route('/register')
       password: req.body.password,
       avatar: req.body.avatar
     }
-    func.generateUser(newUser, () => {
+    userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
@@ -77,7 +77,7 @@ app.route('/create_resource')
 
     }
     const user = req.session.email;
-    func.createNewResource(newResource, user, () => {
+    resourceHelper.createNewResource(newResource, user, () => {
       res.render('index');
     });
 
