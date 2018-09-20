@@ -1,0 +1,98 @@
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0; }
+
+header, nav, section {
+  display: block; }
+
+h1 {
+  font-size: 2em;
+  margin: .67em 0; }
+
+  .navbar-toggler {
+  width: 40px;
+  height: 40px;
+  background-color: #ff3641;
+  color: white; }
+
+.navbar {
+  color: #800000;
+  background-color: #778899; }
+
+.btn {
+  background-color: #800000  ;
+  color: white;
+  margin: 0 5px; }
+
+.search {
+  padding: 25px 20px;
+  margin: 0;
+  width: 400px; }
+
+  .search input {
+    width: 150px; }
+/* LOGIN */
+.login{
+  font-weight: 900;
+  border-radius: 5px;
+/*  background-color: #80d5ff;
+*/  margin: 20px auto;
+  padding: 65px; }
+
+  .login input {
+    padding: 10px; }
+
+  .login button {
+    background-color: #800000 ; }
+
+  .login label {
+    font-size: 1.2em; }
+
+/* REGISTER */
+
+.register {
+  font-weight: 900;
+  border-radius: 5px;
+/*  background-color: #80d5ff;
+*/  margin: 20px auto;
+  padding: 65px; }
+
+  .register input {
+    padding: 10px; }
+
+  .register button {
+    background-color: #800000  ; }
+
+  .register label {
+    font-size: 1.2em; }
+
+/* NEW RESOURCE */
+.wrapper {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.newform {
+  font-weight: 900;
+  border-radius: 5px;
+/*  background-color: #80d5ff;
+*/  margin: 20px auto;
+  padding: 65px; }
+
+}
+.newform input {
+    padding: 10px; }
+
+.newform button {
+    background-color: #800000  ;
+    float: center;
+
+
+  }
+
+  .newform label {
+    font-size: 1.2em; }
