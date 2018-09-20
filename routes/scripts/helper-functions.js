@@ -1,3 +1,7 @@
+const ENV         = process.env.ENV || "development";
+const knexConfig  = require("../../knexfile");
+const knex        = require("knex")(knexConfig[ENV]);
+
 
 module.exports = {
 
@@ -29,10 +33,10 @@ module.exports = {
     }
   },
 
-  templateVars: {
-    email: req.session.email,
-    username: req.session.username
-  },
+  // templateVars: {
+  //   email: req.session.email,
+  //   username: req.session.username
+  // },
  
   // functions to make
 

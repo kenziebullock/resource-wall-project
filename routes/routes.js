@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const func = require('../public/scripts/helper-functions');
+const func = require('./scripts/helper-functions');
 
 // Home page
 app.get("/", (req, res) => {
@@ -10,33 +10,28 @@ app.get("/", (req, res) => {
 app.get("/index", (req, res) => {
     res.render("index");
 });
-  
 
 // Login Page
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
-    
     res.render('login', func.templateVars);
   }) 
 
   .post((req, res) => {
-
     func.errorCheck(req, res);
     func.userAuthentication(req, res);
-
   });
 
 // logout current user
 app.route('/logout')
-  .get((req, res) => {
-    req.session.email = null;
+  .post((req, res) => {
+    // req.session.email = null;
     delete req.session;
     res.redirect('/login');
   });
 
 // Registration Page
-
 app.route('/register')
   .get((req, res) => {
     func.loginCheck(req, res);
@@ -45,19 +40,21 @@ app.route('/register')
   .post((req, res) => {
     // registration
     func.errorCheck(req, res);
-
-
-    res.send('register post route');
+    // check if user in database
+    // create user in database
+    res.render('index');
   });
 
 //  New Resource Page
 
 app.route('/resources/new')
   .get((req, res) => {
-    res.send('resources/new get route');
+    res.render('new-resource', func.templateVars);
   })
   .post((req, res) => {
-    res.send('resources/new post route');
+    // function to create new resource
+    // 
+    res.render('index', func.templateVars);
   });
 
 // View all resources
@@ -112,6 +109,10 @@ app.route('/users/:id/resources')
   .get((req, res) => {
     res.send('/users/:id/resources');
   })
+
+app.route('/*').get((req, res) => {
+    res.send('404 Page not found');
+  });
 
 module.exports = app;
 
