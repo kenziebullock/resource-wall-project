@@ -16,22 +16,23 @@ app.get("/index", (req, res) => {
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
-    res.render('login', func.templateVars);
-  }) 
+    res.render('login');
+  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
-    const users = {
-      email: req.body.email,
-    }
-    func.loginUser(users, res.redirect);
+    const user = { email: req.body.email }
+
+    func.loginUser(user, (foundUser) => {
+      req.session.email = foundUser.email;
+      res.render('index', {user: foundUser});
+    });
     
   });
 
 // logout current user
 app.route('/logout')
   .post((req, res) => {
-    // req.session.email = null;
-    delete req.session;
+    req.session = null;
     res.redirect('/login');
   });
 
@@ -43,14 +44,24 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
+    const newUser = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      avatar: req.body.avatar
+    }
+    func.generateUser(newUser, () => {
+      req.session.email = newUser.email;
+      res.render('index', {user: newUser});
+    })
     res.send('register post route');
   });
 
 //  New Resource Page
 
-app.route('/resources/new')
+app.route('/create_resource')
   .get((req, res) => {
-    res.render('new-resource');
+    res.render('create_resource');
   })
 
   .post((req, res) => {
@@ -59,9 +70,11 @@ app.route('/resources/new')
       title: req.body.title,
       url: req.body.url,
       topic: req.body.topic,
-      description: req.body.description
+      description: req.body.description,
+      
     }
-    func.createNewResource(newResource, () => {
+    const user = req.session.email;
+    func.createNewResource(newResource, user, () => {
       res.render('index');
     });
     
@@ -71,8 +84,8 @@ app.route('/resources/new')
 
 app.route('/resources')
   .get((req, res) => {
-    getResources(() => {
-      res.render('index')
+    resourceHelper.showResources((allResources) => {
+      res.render('index', allResources);
     })
   });
 
@@ -80,52 +93,65 @@ app.route('/resources')
 
 app.route('/resources/:id')
   .get((req, res) => {
-    // function to check if resource exists
-    
-    // pass resource to templateVars
-    const templateVars = {
-      resource: database[req.params.id]
-    }
 
-    // render resource
-    res.render('resources/:id', templateVars);
-  })
+    // function to check if resource exists
+    // and return that resource
+    
+    const resourceId = req.params.id;
+    resourceHelper.getResource(resourceId, (resource) => {
+      res.render('resource-show', resource);
+    })
+  });
 
 // Comment/Like/Rate specific resource
 
 app.route('/resources/:id/comment')
   .post((req, res) => {
+
     //function to create comment on resource
-
-    const templateVars = {
-      resource: database[req.params.id]
-    }
-
-    res.send('resources/:id/comment post route', templateVars);
-  })
+    const comment = req.body.comment;
+    resourceHelper.newComment(comment, () => {
+      res.redirect('/resources/:id');
+    })
+  });
 
 app.route('/resources/:id/rate')
   .post((req, res) => {
-    res.send('resources/:id/rate post route');
-  })
+
+    // function to add rating
+    const rate = req.body.rate;
+    resourceHelper.newRate(rate, () => {
+      res.redirect('/resources/:id');
+    })
+  });
 
 app.route('/resources/:id/like')
   .post((req, res) => {
-    res.send('resources/:id/like post route');
-  })
+    
+    // function to check if there is a like and like if there is none, remove like if there is one
+    const like = req.body.like;
+    resourceHelper.newLike(like, () => {
+      res.redirect('/resources/:id')
+    })
+  });
 
 // User profile page
 
 app.route('/users/:id')
   .get((req, res) => {
-    res.send('users/:id get route');
-  })
+    
+    // function to get user profile page
+    const user = req.params.id;
+    func.getUser(user, (user) => {
+      res.render('profile', user);
+    })
+  });
 
 // User update/edit page
 
 app.route('/users/:id/update')
   .get((req, res) => {
-    res.send('users/:id/update get route');
+    res.render('update_profile');
   })
   .post((req, res) => {
     res.send('users/:id/update post route');
