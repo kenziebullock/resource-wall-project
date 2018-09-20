@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>ResWall</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Montserrat" rel="stylesheet">
+    <!-- jq -->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+
+    </script>
+     <link rel="stylesheet" type="text/css" href="../../public/styles/styles.css">
+
+  </head>
+
+<body>
+<nav class="navbar navbar-expand-md fixed-top bg-dar">
+<button class="navbar-toggler fas fa-bars btn" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+
+    aria-expanded="false" aria-label="Toggle navigation"></button>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <form action="/login" method="post">
+              <button type="submit" class="btn">Login </button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <form action="/users/<%= userId %>" method="get">
+              <button type="submit" class="btn">Profile</button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <form action="/users/<%= userId %>/resources" method="get">
+              <button type="submit" class="btn">My Posts</button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <form action="/users/<%= userId %>/likes" method="get">
+              <button type="submit" class="btn">My Likes</button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <form action="/resources/new" method="get">
+              <button type="submit" class="btn">New Post</button>
+            </form>
+          </li>
+          <li>
+            <span class="navbar-brand mb-0 h1">Welcome back, <%= userName %> </span>
+          </li>
+        </ul>
+      </div>
+        <form class="form-inline mt-2 mt-md-0" for="query" action="/search" method="get">
+          <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search">
+          <button class="btn my-2 my-sm-0" type="submit">Search</button>
+        </form>
+</body>
+</html>
