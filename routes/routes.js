@@ -1,11 +1,7 @@
 const express = require('express');
 const app = express.Router();
-<<<<<<< HEAD
-const func = require('./scripts/helper-functions');
-=======
 const func = require('../lib/user-helper');
 const middleware = require('../middleware');
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
 
 // Home page
 app.get("/", (req, res) => {
@@ -23,18 +19,12 @@ app.route('/login')
     res.render('login', func.templateVars);
   }) 
 
-<<<<<<< HEAD
-  .post((req, res) => {
-    func.errorCheck(req, res);
-    func.userAuthentication(req, res);
-=======
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const users = {
       email: req.body.email,
     }
     func.loginUser(users, res.redirect);
     
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
   });
 
 // logout current user
@@ -53,47 +43,65 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
-<<<<<<< HEAD
-    func.errorCheck(req, res);
-    // check if user in database
-    // create user in database
-    res.render('index');
-=======
     res.send('register post route');
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
   });
 
 //  New Resource Page
 
 app.route('/resources/new')
   .get((req, res) => {
-    res.render('new-resource', func.templateVars);
+    res.render('new-resource');
   })
+
   .post((req, res) => {
     // function to create new resource
-    // 
-    res.render('index', func.templateVars);
+    const newResource = {
+      title: req.body.title,
+      url: req.body.url,
+      topic: req.body.topic,
+      description: req.body.description
+    }
+    func.createNewResource(newResource, () => {
+      res.render('index');
+    });
+    
   });
 
 // View all resources
 
 app.route('/resources')
   .get((req, res) => {
-    res.send('resources get route');
-  })
+    getResources(() => {
+      res.render('index')
+    })
+  });
 
 // View specific resource
 
 app.route('/resources/:id')
   .get((req, res) => {
-    res.send('resources/:id get route');
+    // function to check if resource exists
+    
+    // pass resource to templateVars
+    const templateVars = {
+      resource: database[req.params.id]
+    }
+
+    // render resource
+    res.render('resources/:id', templateVars);
   })
 
 // Comment/Like/Rate specific resource
 
 app.route('/resources/:id/comment')
   .post((req, res) => {
-    res.send('resources/:id/comment post route');
+    //function to create comment on resource
+
+    const templateVars = {
+      resource: database[req.params.id]
+    }
+
+    res.send('resources/:id/comment post route', templateVars);
   })
 
 app.route('/resources/:id/rate')
