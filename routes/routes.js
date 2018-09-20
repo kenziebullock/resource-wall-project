@@ -1,11 +1,7 @@
 const express = require('express');
 const app = express.Router();
-<<<<<<< HEAD
-const func = require('./scripts/helper-functions');
-=======
 const func = require('../lib/user-helper');
 const middleware = require('../middleware');
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
 
 // Home page
 app.get("/", (req, res) => {
@@ -23,18 +19,12 @@ app.route('/login')
     res.render('login', func.templateVars);
   }) 
 
-<<<<<<< HEAD
-  .post((req, res) => {
-    func.errorCheck(req, res);
-    func.userAuthentication(req, res);
-=======
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const users = {
       email: req.body.email,
     }
     func.loginUser(users, res.redirect);
     
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
   });
 
 // logout current user
@@ -53,14 +43,7 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
-<<<<<<< HEAD
-    func.errorCheck(req, res);
-    // check if user in database
-    // create user in database
-    res.render('index');
-=======
     res.send('register post route');
->>>>>>> 86fa8a3e78e7575b54798638206b36f7eacce4a3
   });
 
 //  New Resource Page
