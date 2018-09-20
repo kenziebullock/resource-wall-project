@@ -18,14 +18,10 @@ app.get("/", (req, res) => {
 // Login Page
 app.route('/login')
   .get((req, res) => {
-<<<<<<< HEAD
+
     userHelper.loginCheck(req, res);
     res.render('login');
-=======
-    func.loginCheck(req, res);
 
-    res.render('login', func.templateVars);
->>>>>>> 9654cc2fa3b9d3f1e99498cc88aed77c85cca78e
   })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
@@ -34,14 +30,11 @@ app.route('/login')
     }
     func.loginUser(users, res.redirect);
 
-<<<<<<< HEAD
     userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
       res.render('index', {user: foundUser});
     });
-    
-=======
->>>>>>> 9654cc2fa3b9d3f1e99498cc88aed77c85cca78e
+
   });
 
 // logout current user
@@ -61,7 +54,7 @@ app.route('/register')
   })
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
-<<<<<<< HEAD
+
     const newUser = {
       name: req.body.name,
       email: req.body.email,
@@ -72,9 +65,7 @@ app.route('/register')
       req.session.email = newUser.email;
       res.render('index', {user: newUser});
     })
-=======
-    res.send('register post route');
->>>>>>> 9654cc2fa3b9d3f1e99498cc88aed77c85cca78e
+
   });
 
 //  New Resource Page
@@ -91,15 +82,12 @@ app.route('/resources/new')
 
 app.route('/resources')
   .get((req, res) => {
-<<<<<<< HEAD
+
     resourceHelper.showResources((allResources) => {
       res.render('resources',  { allResources } );
     })
   });
-=======
-    res.send('resources get route');
-  })
->>>>>>> 9654cc2fa3b9d3f1e99498cc88aed77c85cca78e
+
 
 // View specific resource
 
