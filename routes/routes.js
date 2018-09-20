@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express.Router();
-<<<<<<< HEAD
+
 const userHelper = require('../lib/user-helper');
 const resourceHelper = require('../lib/resource-helper');
-=======
-const func = require('../lib/user-helper');
->>>>>>> 9654cc2fa3b9d3f1e99498cc88aed77c85cca78e
+
 const middleware = require('../middleware');
 
 // Home page
@@ -28,7 +26,7 @@ app.route('/login')
     const users = {
       email: req.body.email,
     }
-    func.loginUser(users, res.redirect);
+
 
     userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
