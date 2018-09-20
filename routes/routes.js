@@ -5,28 +5,28 @@ const middleware = require('../middleware');
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("create_resource");
 });
 
-app.get("/index", (req, res) => {
-    res.render("index");
+app.get("/create_resource", (req, res) => {
+    res.render("create_resource");
 });
-  
+
 
 // Login Page
 app.route('/login')
   .get((req, res) => {
     func.loginCheck(req, res);
-    
+
     res.render('login', func.templateVars);
-  }) 
+  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const users = {
       email: req.body.email,
     }
     func.loginUser(users, res.redirect);
-    
+
   });
 
 // logout current user
