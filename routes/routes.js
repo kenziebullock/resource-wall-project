@@ -135,8 +135,8 @@ app.route('/resources/:id/rate')
   });
 
 app.route('/resources/:id/like')
-  .post((req, res) => {
-
+  .post(middleware.isLogin, (req, res) => {
+    
     // function to check if there is a like and like if there is none, remove like if there is one
     const like = req.body.like;
     resourceHelper.newLike(like, () => {
