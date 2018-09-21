@@ -35,6 +35,11 @@
               <button type="submit" class="btn btn-success btn-sm">Add Comments</button>
             </div>
         </form>
+        <div>
+          <% comments.forEach(function (comment) { %>
+            <p><%= comment.text %> - <%= comment.name %></p>
+          <% }) %>
+        </div>
       </div>
 
     </div>

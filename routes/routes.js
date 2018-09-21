@@ -102,19 +102,22 @@ app.route('/resources/:id')
     // and return that resource
 
     const resourceId = req.params.id;
-    resourceHelper.getResource(resourceId, (resource) => {
-      res.render('main', { resource });
+    resourceHelper.getResource(resourceId, (resource, comments) => {
+      res.render('main', { resource: resource, comments: comments });
     })
   });
 
 // Comment/Like/Rate specific resource
 
-app.route('/resources/:id/comment')
+app.route(middleware.isLogin, '/resources/:id/comment')
   .post((req, res) => {
 
     //function to create comment on resource
     const comment = req.body.comment;
-    resourceHelper.newComment(comment, () => {
+    const resourceId = req.params.id;
+    const userId = req.session.user_id;
+    resourceHelper.newComment(userId, resourceId, comment, (thisComment, thisUser) => {
+      // this will replace with ajax instane call
       res.redirect('/resources/:id');
     })
   });
