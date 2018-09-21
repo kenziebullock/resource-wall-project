@@ -4,7 +4,11 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  /*background-image: url('bookImg.jpg');
+  background-size: cover;
+  background-blend-mode:hard-light;*/
+}
 
 header, nav, section {
   display: block; }
@@ -76,6 +80,8 @@ h1 {
   margin: 0 auto;
 }
 
+/* Create_resources*/
+
 .newform {
   font-weight: 900;
   border-radius: 5px;
@@ -96,3 +102,8 @@ h1 {
 
   .newform label {
     font-size: 1.2em; }
+
+   /* resources */
+.resources {
+
+}
