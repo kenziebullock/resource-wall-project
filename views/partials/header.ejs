@@ -10,34 +10,39 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <form action="/logout" method="post">
-              <button type="submit" class="btn">Logout </button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <form action="/update_profile" method="get">
-              <button type="submit" class="btn">Profile</button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <form action="/resource_show" method="get">
-              <button type="submit" class="btn">My Posts</button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <form action="/users/" method="get">
-              <button type="submit" class="btn">My Likes</button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <form action="/resources/new" method="get">
-              <button type="submit" class="btn">New Post</button>
-            </form>
-          </li>
-          <li>
-            <span class="navbar-brand mb-0 h1">Welcome, </span>
-          </li>
+          <% if (user) { %>
+            <li class="nav-item">
+              <form action="/logout" method="post">
+                <button type="submit" class="btn">Logout </button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/update_profile" method="get">
+                <button type="submit" class="btn">Profile</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/resource_show" method="get">
+                <button type="submit" class="btn">My Posts</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/users/" method="get">
+                <button type="submit" class="btn">My Likes</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/resources/new" method="get">
+                <button type="submit" class="btn">New Post</button>
+              </form>
+            </li>
+            <li>
+              <span class="navbar-brand mb-0 h1">Welcome, <%= user.name%></span>
+            </li>
+          <% } else { %>
+            <a href="/login" class="btn btn-warning">Login</a>
+            <a href="/register" class="btn btn-primary">Register</a>
+          <% } %>
         </ul>
       </div>
         <form class="form-inline mt-2 mt-md-0" for="query" action="/search" method="get">
