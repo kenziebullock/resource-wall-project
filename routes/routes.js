@@ -56,7 +56,7 @@ app.route('/register')
     }
     userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
-      res.render('index');
+      res.redirect('/resources');
     })
   });
 

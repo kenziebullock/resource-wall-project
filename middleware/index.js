@@ -57,8 +57,7 @@ const middleware = {
     } else{
       res.redirect('/login');
     }
-  }
-
+  },
 }
 
 
