@@ -178,7 +178,7 @@ app.route('/users/:id/update')
       email: req.body.email,
       password: req.body.password,
       avatar: req.body.avatar,
-      id: req.session.id
+      id: req.session.user_id
     }
     
     userHelper.updateUser(updatedUserInfo, () => {
