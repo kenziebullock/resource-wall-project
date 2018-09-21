@@ -148,13 +148,13 @@ app.route('/resources/:id/like')
 
 app.route('/users/:id')
   .get((req, res) => {
-    
+
     // function to get user profile page
     const currentUser = {
       id: req.session.user_id,
       user_id: req.params.id
     }
-    
+
     userHelper.getUser(currentUser, (user) => {
       res.render('profile', {user: user});
     })
@@ -180,7 +180,7 @@ app.route('/users/:id/update')
       avatar: req.body.avatar,
       id: req.session.user_id
     }
-    
+
     userHelper.updateUser(updatedUserInfo, () => {
       // req.session.email = newUser.email;
       res.render('profile', {user: updatedUserInfo});

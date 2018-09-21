@@ -1,40 +1,32 @@
 <% include ./partials/header.ejs %>
 
-<div class="container">
+<div class="container resources">
   <div class="row">
-    <div class="col-12">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">URL</th>
-                <th scope="col">Topic</th>
-                <th scope="col">Likes</th>
-                <th scope="col">Average</th>
-              </tr>
-            </thead>
-            <tbody>
-                <% allResources.forEach(function(resource, index) { %>
-                  <tr>
-                    <th scope="row"><%= index + 1%></th>
-                    <td><%= resource.title %></td>
-                    <td><%= resource.description %></td>
-                    <td><%= resource.url %></td>
-                    <td><%= resource.topic %></td>
-                    <td><%= resource.likes %></td>
-                    <% if (resource.avg) { %>
-                      <td><%= Number(resource.avg).toFixed(2) %></td>
-                    <% } else { %>
-                      <td>No Rate Yet</td>
-                    <% } %>
-                  </tr>
-                <% }) %>
-            </tbody>
-          </table>
 
-
-    </div>
+    <% allResources.forEach(function(resource, index) { %>
+  <div class="col-sm-4">
+  <tbody>
+    <div class="card text-center" style="width: 18rem;margin-top: 85px">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+        <a class="nav-link active" href="#"><i class="fa fa-heart"></i><%= resource.likes %></a>
+        </li>
+          <li class="nav-item">
+        <a class="nav-link" href="http://google.com">Rate</a>
+        </li>
+    </ul>
   </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= resource.title %></h5>
+        <p class="card-text"><%= resource.description %></p>
+        <h5 class="card-url"><%= resource.url %></h5>
+          <a href="#" class="btn btn-primary">Comment</a>
+      </div>
+    </div>
+    </div>
+<% }) %>
+</tbody>
+</div>
+</div>
 </div>
