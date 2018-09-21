@@ -53,8 +53,10 @@ app.route('/register')
       password: req.body.password,
       avatar: req.body.avatar
     }
-    userHelper.generateUser(newUser, () => {
+    userHelper.generateUser(newUser, (id) => {
       req.session.email = newUser.email;
+      req.session.user_id = id;
+      console.log(req.session);
       res.redirect('/resources');
     })
   });
@@ -126,11 +128,19 @@ app.route(middleware.isLogin, '/resources/:id/comment')
 app.route('/resources/:id/rate')
   .post((req, res) => {
 
+      resourceHelper.newRate(req.session.user_id, req.params.id, req.body.rate, (err) => {
+        if (err) {
+          req.flash('error', err.message);
+        } else {
+          req.flash('success', 'You have rate this resource');
+        }
+        res.redirect('back');
+      })
     // function to add rating
-    const rate = req.body.rate;
-    resourceHelper.newRate(rate, () => {
-      res.redirect('/resources/:id');
-    })
+    // const rate = req.body.rate;
+    // resourceHelper.newRate(rate, () => {
+    //   res.redirect('/resources/:id');
+    // })
   });
 
 app.route('/resources/:id/like')
