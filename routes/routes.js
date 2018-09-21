@@ -135,12 +135,14 @@ app.route('/resources/:id/rate')
 
 app.route('/resources/:id/like')
   .post(middleware.isLogin, (req, res) => {
-    
+    console.log(req.body);
+    resourceHelper.newLike(req.session.user_id, req.body.resource_id, null);
+
     // function to check if there is a like and like if there is none, remove like if there is one
-    const like = req.body.like;
-    resourceHelper.newLike(like, () => {
-      res.redirect('/resources/:id')
-    })
+    // const like = req.body.like;
+    // resourceHelper.newLike(like, () => {
+    //   res.redirect('/resources/:id')
+    // })
   });
 
 // User profile page
