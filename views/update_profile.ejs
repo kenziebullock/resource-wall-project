@@ -9,13 +9,13 @@
 <body>
   <h2>Edit Profile</h2>
 
-  <form style="margin-top: 4em" action="/edit_profile" method="POST">
+  <form style="margin-top: 4em" action="/users/<%=user.id%>/update" method="POST">
     <label for "fileupload">Image URL</label>
-    <input id="fileupload" type="fileupload" name="full_name" placeholder="<%= user.avatar %>"> <br/>
+    <input id="avatar" type="avatar" name="avatar" placeholder="<%= user.avatar %>"> <br/>
 
 
-    <label for="full_name">Full Name</label>
-    <input id="full_name" type="full_name" name="full_name" placeholder="<%= user.name %>"> <br/>
+    <label for="name">Full Name</label>
+    <input id="name" type="name" name="name" placeholder="<%= user.name %>"> <br/>
 
     <label for="email">Email</label>
     <input id="email" type="email" name="email" placeholder="<%= user.email %>"> <br/>

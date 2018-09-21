@@ -173,7 +173,8 @@ app.route('/users/:id/update')
       avatar: req.body.avatar,
       id: req.session.id
     }
-    func.updateUser(updatedUserInfo, () => {
+    
+    userHelper.updateUser(updatedUserInfo, () => {
       // req.session.email = newUser.email;
       res.render('profile', {user: updatedUserInfo});
     })
