@@ -172,10 +172,12 @@ app.route('/users/:id/update')
   })
 
 app.route('/users/:id/resources')
-  .get((req, res) => {
+  .get(middleware.isLogin, (req, res) => {
     const user = req.params.id;
     // function to get users created/liked resources
-
+    resourceHelper.showMyResources(user, (myResources) => {
+      res.render('resources', { allResources: myResources });
+    });
   })
 
 app.route('/*').get((req, res) => {
