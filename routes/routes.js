@@ -134,10 +134,15 @@ app.route('/resources/:id/rate')
   });
 
 app.route('/resources/:id/like')
-  .post(middleware.isLogin, (req, res) => {
-    resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
-      res.json({increment});
-    });
+  .post((req, res) => {
+    if (!req.session.user_id) {
+      const url = '/login';
+      res.json({url});
+    } else {
+      resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
+        res.json({increment});
+      });
+    }
   });
 
 // User profile page

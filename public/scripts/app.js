@@ -18,9 +18,13 @@ $(document).ready(function(){
       url: `/resources/${$(this).attr('data-likes')}/like`, 
       data: likeState,
       method: 'POST'
-    }).then((increment) => {
-      const $like = $(this).next()
-      $like.text(Number($like.text()) + increment.increment);
+    }).then((response) => {
+      if(response.url) {
+        window.location.href = response.url
+      } else {
+        const $like = $(this).next()
+        $like.text(Number($like.text()) + response.increment);
+      }
     })
   });
 });
