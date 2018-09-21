@@ -147,13 +147,13 @@ app.route('/resources/:id/like')
 
 app.route('/users/:id')
   .get((req, res) => {
-    
+
     // function to get user profile page
     const currentUser = {
       id: req.session.user_id,
       user_id: req.params.id
     }
-    
+
     userHelper.getUser(currentUser, (user) => {
       res.render('profile', {user: user});
     })
@@ -177,9 +177,9 @@ app.route('/users/:id/update')
       email: req.body.email,
       password: req.body.password,
       avatar: req.body.avatar,
-      id: req.session.id
+      id: req.session.user_id
     }
-    
+
     userHelper.updateUser(updatedUserInfo, () => {
       // req.session.email = newUser.email;
       res.render('profile', {user: updatedUserInfo});
