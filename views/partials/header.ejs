@@ -1,14 +1,10 @@
 <% include ./head.ejs %>
 <nav class="navbar navbar-expand-md bg-dar">
-<button class="navbar-toggler fas fa-bars btn" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse">
-
-    aria-expanded="false" aria-label="Toggle navigation"></button>
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <% if (user) { %>
             <li class="nav-item">
@@ -35,11 +31,11 @@
             <a href="/register" class="btn btn-primary">Register</a>
           <% } %>
         </ul>
-      </div>
         <form class="form-inline mt-2 mt-md-0" for="query" action="/search" method="get">
           <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search">
           <button class="btn my-2 my-sm-0" type="submit">Search</button>
         </form>
+      </div>
 </nav>
 
 <% if (success && success.length > 0) { %>
