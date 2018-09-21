@@ -103,7 +103,7 @@ app.route('/resources/:id')
 
     const resourceId = req.params.id;
     resourceHelper.getResource(resourceId, (resource) => {
-      res.render('resource-show', resource);
+      res.render('main', { resource });
     })
   });
 
