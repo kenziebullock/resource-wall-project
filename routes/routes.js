@@ -23,12 +23,12 @@ app.route('/login')
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const user = {
       email: req.body.email,
-      
     }
 
     userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
-      res.render('index', {user: foundUser});
+      req.session.user_id = foundUser.id;
+      res.redirect('/resources');
     });
     
   });
@@ -56,18 +56,19 @@ app.route('/register')
     }
     userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
-      res.render('index', {user: newUser});
+      res.redirect('/resources');
     })
   });
 
 //  New Resource Page
 
-app.route('/create_resource')
+app.route('/resources/new')
   .get((req, res) => {
     res.render('create_resource');
   })
 
-  .post((req, res) => {
+  .post(middleware.isLogin, (req, res) => {
+    console.log(req.body);
     // function to create new resource
     const newResource = {
       title: req.body.title,
@@ -77,8 +78,9 @@ app.route('/create_resource')
 
     }
     const user = req.session.email;
-    resourceHelper.createNewResource(newResource, user, () => {
-      res.render('index');
+    resourceHelper.createNewResource(newResource, user, (err, newResource) => {
+      req.flash("success", ` You Have Posted A New Resource. Thanks For Sharing `);
+      res.redirect('/resources');
     });
 
   });
@@ -101,19 +103,23 @@ app.route('/resources/:id')
     // and return that resource
 
     const resourceId = req.params.id;
-    resourceHelper.getResource(resourceId, (resource) => {
-      res.render('resource-show', resource);
+    resourceHelper.getResource(resourceId, (resource, comments) => {
+      res.render('main', { resource: resource, comments: comments });
     })
   });
 
 // Comment/Like/Rate specific resource
 
-app.route('/resources/:id/comment')
+app.route(middleware.isLogin, '/resources/:id/comment')
   .post((req, res) => {
 
     //function to create comment on resource
     const comment = req.body.comment;
-    resourceHelper.newComment(comment, () => {
+    const resourceId = req.params.id;
+    const userId = req.session.user_id;
+    resourceHelper.newComment(userId, resourceId, comment, (thisComment, thisUser) => {
+      req.flash("success", ` You Have Added A Comment `);
+      // this will replace with ajax instane call
       res.redirect('/resources/:id');
     })
   });
@@ -171,10 +177,12 @@ app.route('/users/:id/update')
   })
 
 app.route('/users/:id/resources')
-  .get((req, res) => {
+  .get(middleware.isLogin, (req, res) => {
     const user = req.params.id;
     // function to get users created/liked resources
-
+    resourceHelper.showMyResources(user, (myResources) => {
+      res.render('resources', { allResources: myResources });
+    });
   })
 
 app.route('/*').get((req, res) => {
