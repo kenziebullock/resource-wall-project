@@ -17,6 +17,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg" width="500" height="333">
         <p><%= resource.description %></p>
         <div class="rate">
+          <form action="/resources/<%= resource.id %>/rate" method="POST">
             <input type="radio" id="star5" name="rate" value="5" />
             <label for="star5" title="text">5 stars</label>
             <input type="radio" id="star4" name="rate" value="4" />
@@ -27,8 +28,13 @@
             <label for="star2" title="text">2 stars</label>
             <input type="radio" id="star1" name="rate" value="1" />
             <label for="star1" title="text">1 star</label>
+              <button type="submit" class="btn btn-success btn-sm">Rate</button>
+
+            </form>
         </div><br/>
-        <form action="/resources/<%= resource.id%>/comment" method="POST">
+
+
+        <form>
             <h4>Comments</h4>
             <div class="form-group">
               <textarea placeholder="http://www.yahoo.com" class="form-control" name="comment"></textarea>
