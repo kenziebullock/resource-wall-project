@@ -68,6 +68,7 @@ app.route('/resources/new')
   })
 
   .post(middleware.isLogin, (req, res) => {
+    console.log(req.body);
     // function to create new resource
     const newResource = {
       title: req.body.title,

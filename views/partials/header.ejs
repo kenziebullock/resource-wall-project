@@ -22,19 +22,10 @@
               </form>
             </li>
             <li class="nav-item">
-              <form action="/resource_show" method="get">
-                <button type="submit" class="btn">My Posts</button>
-              </form>
+              <a href="/users/<%= user.id %>/resources" class="btn">My Posts</a>
             </li>
-            <li class="nav-item">
-              <form action="/users/" method="get">
-                <button type="submit" class="btn">My Likes</button>
-              </form>
-            </li>
-            <li class="nav-item">
-              <form action="/resources/new" method="get">
-                <button type="submit" class="btn">New Post</button>
-              </form>
+            <li class="nav-item"></li>
+              <a href="/resources/new" class="btn">New Post</a>
             </li>
             <li>
               <span class="navbar-brand mb-0 h1">Welcome, <%= user.name%></span>
