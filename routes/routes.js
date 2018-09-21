@@ -150,7 +150,7 @@ app.route('/users/:id')
     
     // function to get user profile page
     const currentUser = {
-      id: req.session.id,
+      id: req.session.user_id,
       user_id: req.params.id
     }
     
@@ -164,7 +164,7 @@ app.route('/users/:id')
 app.route('/users/:id/update')
   .get((req, res) => {
     const currentUser = {
-      id: req.session.id,
+      id: req.session.user_id,
       user_id: req.params.id
     }
     userHelper.getUser(currentUser, (user) => {
