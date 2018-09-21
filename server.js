@@ -9,6 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const cookieSession = require('cookie-session');
 const app         = express();
+const flash       = require('connect-flash');
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -44,8 +45,12 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(flash());
+
 // set local variables for users
 app.use(function(req, res, next){
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   const user = {
     email: req.session.email };
   if (user.email) {

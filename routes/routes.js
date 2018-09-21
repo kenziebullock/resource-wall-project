@@ -79,6 +79,7 @@ app.route('/resources/new')
     }
     const user = req.session.email;
     resourceHelper.createNewResource(newResource, user, (err, newResource) => {
+      req.flash("success", ` You Have Posted A New Resource. Thanks For Sharing `);
       res.redirect('/resources');
     });
 
@@ -117,6 +118,7 @@ app.route(middleware.isLogin, '/resources/:id/comment')
     const resourceId = req.params.id;
     const userId = req.session.user_id;
     resourceHelper.newComment(userId, resourceId, comment, (thisComment, thisUser) => {
+      req.flash("success", ` You Have Added A Comment `);
       // this will replace with ajax instane call
       res.redirect('/resources/:id');
     })

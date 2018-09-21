@@ -13,10 +13,9 @@ const middleware = {
     knex.select('*').from('users').where({email})
     .then((rows) => {
       if (rows.length === 0){
-        console.log('valid registeration');
         return next();
       } else {
-        console.log('invalid registeration. User exist');
+        req.flash("error", "Duplicated Email. Please login");
         res.redirect('/login');
       }
     })
@@ -25,10 +24,12 @@ const middleware = {
   errorCheck: (req, res, next) => {
     if (!req.body.email) {
         // some error message
-        return res.send('No email address entered.');
+        req.flash("error", "Email Cannot Be Empty");
+        res.redirect('back');
     } else if (!req.body.password) {
         // some error message
-        return res.send('No password entered.');
+        req.flash("error", "Password Cannot Be Empty");
+        res.redirect('back');
     } else {
         return next();
     }
@@ -43,10 +44,11 @@ const middleware = {
     knex.select('*').from('users').where({ email }).andWhere({ password })
     .then((rows) => {
       if (rows.length === 1){
+        req.flash("success", `Hello ${rows[0].name}, Welcome back! `);
         return next();
       } else {
-        res.send('Invalid login credentials');
-        // res.redirect('/login')
+        req.flash("error", "Invalid Password or Email");
+        res.redirect('/login')
       }
     })
   },
@@ -55,6 +57,7 @@ const middleware = {
     if (req.session.email){
       return next();
     } else{
+      req.flash("error", "Sorry, You need to login first");
       res.redirect('/login');
     }
   },
