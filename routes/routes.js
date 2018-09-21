@@ -110,17 +110,18 @@ app.route('/resources/:id')
 
 // Comment/Like/Rate specific resource
 
-app.route(middleware.isLogin, '/resources/:id/comment')
-  .post((req, res) => {
+app.route('/resources/:id/comment')
+  .post(middleware.isLogin, (req, res) => {
 
     //function to create comment on resource
     const comment = req.body.comment;
     const resourceId = req.params.id;
     const userId = req.session.user_id;
+
     resourceHelper.newComment(userId, resourceId, comment, (thisComment, thisUser) => {
       req.flash("success", ` You Have Added A Comment `);
       // this will replace with ajax instane call
-      res.redirect('/resources/:id');
+      res.redirect('back');
     })
   });
 

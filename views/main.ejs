@@ -28,10 +28,10 @@
             <input type="radio" id="star1" name="rate" value="1" />
             <label for="star1" title="text">1 star</label>
         </div><br/>
-        <form>
+        <form action="/resources/<%= resource.id%>/comment" method="POST">
             <h4>Comments</h4>
             <div class="form-group">
-              <textarea placeholder="http://www.yahoo.com" class="form-control"></textarea>
+              <textarea placeholder="http://www.yahoo.com" class="form-control" name="comment"></textarea>
               <button type="submit" class="btn btn-success btn-sm">Add Comments</button>
             </div>
         </form>
