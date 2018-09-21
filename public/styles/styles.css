@@ -51,7 +51,8 @@ h1 {
     padding: 10px; }
 
   .login button {
-    background-color: #800000 ; }
+    background-color: #800000 ;
+     }
 
   .login label {
     font-size: 1.2em; }
@@ -104,6 +105,10 @@ h1 {
     font-size: 1.2em; }
 
    /* resources */
-.resources {
+.resources .card-header-tabs{
+    background-color: #800000  ;
 
+}
+.resources .btn-primary{
+  float: left;
 }
