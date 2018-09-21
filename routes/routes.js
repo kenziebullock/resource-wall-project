@@ -23,13 +23,12 @@ app.route('/login')
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const user = {
       email: req.body.email,
-      
     }
 
     userHelper.loginUser(user, (foundUser) => {
       req.session.email = foundUser.email;
       req.session.user_id = foundUser.id;
-      res.render('index', {user: foundUser});
+      res.redirect('/resources');
     });
     
   });
@@ -57,7 +56,7 @@ app.route('/register')
     }
     userHelper.generateUser(newUser, () => {
       req.session.email = newUser.email;
-      res.render('index', {user: newUser});
+      res.render('index');
     })
   });
 

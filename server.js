@@ -18,6 +18,9 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
+const userHelper = require('./lib/user-helper');
+const resourceHelper = require('./lib/resource-helper');
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -41,6 +44,20 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+// set local variables for users
+app.use(function(req, res, next){
+  const user = {
+    email: req.session.email };
+  if (user.email) {
+    userHelper.loginUser(user, (currentUser) => {
+      res.locals.user = currentUser;
+      return next();
+    })
+  } else {
+    res.locals.user = undefined;
+    return next();
+  }
+});
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));

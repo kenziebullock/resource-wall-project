@@ -35,6 +35,7 @@ const middleware = {
   },
 
   userAuthentication: (req, res, next) => {
+    // console.log(email, password);
 
     const email = req.body.email;
     const password = req.body.password;
