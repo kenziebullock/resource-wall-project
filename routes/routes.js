@@ -30,7 +30,6 @@ app.route('/login')
       req.session.user_id = foundUser.id;
       res.redirect('/resources');
     });
-    
   });
 
 // logout current user
@@ -148,11 +147,15 @@ app.route('/resources/:id/like')
 
 app.route('/users/:id')
   .get((req, res) => {
-
+    
     // function to get user profile page
-    const user = req.params.id;
-    func.getUser(user, (user) => {
-      res.render('profile', user);
+    const currentUser = {
+      id: req.session.user_id,
+      user_id: req.params.id
+    }
+    
+    userHelper.getUser(currentUser, (user) => {
+      res.render('profile', {user: user});
     })
   });
 
@@ -160,19 +163,26 @@ app.route('/users/:id')
 
 app.route('/users/:id/update')
   .get((req, res) => {
-    const user = req.params.id;
-    res.render('update_profile', user);
+    const currentUser = {
+      id: req.session.user_id,
+      user_id: req.params.id
+    }
+    userHelper.getUser(currentUser, (user) => {
+      res.render('update_profile', {user: user});
+    })
   })
   .post((req, res) => {
     const updatedUserInfo = {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      avatar: req.body.avatar
+      avatar: req.body.avatar,
+      id: req.session.id
     }
-    func.updateUser(updatedUserInfo, () => {
-      req.session.email = newUser.email;
-      res.render('index', {user: updatedUserInfo});
+    
+    userHelper.updateUser(updatedUserInfo, () => {
+      // req.session.email = newUser.email;
+      res.render('profile', {user: updatedUserInfo});
     })
   })
 

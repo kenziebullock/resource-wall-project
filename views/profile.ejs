@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+  <% include partials/header %>
+  <title>Profile</title>
+</head>
+
+<body>
+  <h2>Profile</h2>
+  <ul style="margin-top: 4em">
+    <li><%= user.name %></li>
+    <li><%= user.email %></li>
+    <li><%= user.avatar %></li>
+  </ul>
+  <form action="/users/<%=user.id%>/update" method="get">
+    <button type="submit" class="btn">Edit</button>
+  </form>
+</body>
+</html>
