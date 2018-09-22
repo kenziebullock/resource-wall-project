@@ -23,7 +23,6 @@ $(document).ready(function(){
 
   $('#search-icon').click(function(e){
     e.preventDefault()
-    console.log(e)
     $('#search-form').slideToggle();
   });
 
@@ -34,6 +33,5 @@ $(document).ready(function(){
   $('.card').mouseout(function(e){
     $(this).children('a.nav-link').addClass('hide');
   })
-
 });
 
