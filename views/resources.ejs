@@ -4,29 +4,30 @@
   <div class="row">
 
     <% allResources.forEach(function(resource, index) { %>
-  <div class="col-sm-4">
-  <tbody>
-    <div class="card text">
-      <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-        <a class="nav-link active" href="#"><i class="fa fa-heart" data-likes="<%=  resource.id %>"></i><span><%= resource.likes %></span></a>
-        </li>
-          <li class="nav-item">
-        <a class="nav-link" href="http://google.com">Rate</a>
-        </li>
-    </ul>
-  </div>
-    <div class="card-body">
-      <h5 class="card-title"><%= resource.title %></h5>
-        <p class="card-text"><%= resource.description %></p>
-        <h5 class="card-url"><%= resource.url %></h5>
-          <a href="#" class="btn btn-primary">Comment</a>
+      <div class="col-md-4 col-sm-6">
+        <div class="card">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1505032254650-38c840ef254d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6a2d929ec8be991967b81fb5d8cdba58&auto=format&fit=crop&w=1650&q=80" alt="Card image cap">
+          <a class="nav-link active" href="#"><i class="fa fa-heart" data-likes="<%=  resource.id %>"></i><span class="like"><%= resource.likes %></span>
+            <span>
+                <% if (resource.avg) { %>
+                  <% for ( i = 0; i < resource.avg; i += 1){ %>
+                    <i class="fas fa-star"></i>
+                  <% } %>
+                <% } else { %>
+                  <i class="far fa-star"></i>
+                <% } %>
+              </span>
+          </a>
+          <div class="card-body">
+            <h5 class="card-title"><%= resource.title %></h5>
+            <p class="card-text"><%= resource.description %></p>
+            <h5 class="card-url"><%= resource.url %></h5>
+            <a href="/resources/<%= resource.id%>" class="btn btn-primary">Details</a>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-<% }) %>
-</tbody>
+    <% }) %>
+
 </div>
 </div>
 </div>

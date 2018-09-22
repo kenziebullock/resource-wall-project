@@ -110,8 +110,24 @@ text-align: left;
   float: left;
 }
 
+.resources .fa-heart {
+  transition: font-size .3s;
+  color: red;
+}
+
+.resources .like {
+  color: red;
+}
 
 .resources .fa-heart:hover {
-  border: 1px solid #888;
-  background-color: red !important;
+  font-size: 1.3em;
+}
+
+.card {
+  border: 1px solid #ddd;
+  margin: 10px 0px;
+}
+
+.card a {
+  text-align: right;
 }
