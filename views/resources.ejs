@@ -1,13 +1,16 @@
 <% include ./partials/header.ejs %>
 
-<div class="container resources">
-  <div class="row">
-
-    <% allResources.forEach(function(resource, index) { %>
-      <div class="col-md-4 col-sm-6">
+<div   class="container resources">
+  <div class="row justify-content-center">
+    <div class="card-columns">
+      <% allResources.forEach(function(resource, index) { %>
+    <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+    </div> -->
         <div class="card">
           <img class="card-img-top" src="https://images.unsplash.com/photo-1505032254650-38c840ef254d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6a2d929ec8be991967b81fb5d8cdba58&auto=format&fit=crop&w=1650&q=80" alt="Card image cap">
-          <a class="nav-link active" href="#"><i class="fa fa-heart" data-likes="<%=  resource.id %>"></i><span class="like"><%= resource.likes %></span>
+          <a class="nav-link active hide" href="#">
+            <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+            <span class="like"><%= resource.likes %></span>
             <span>
                 <% if (resource.avg) { %>
                   <% for ( i = 0; i < resource.avg; i += 1){ %>
@@ -20,14 +23,24 @@
           </a>
           <div class="card-body">
             <h5 class="card-title"><%= resource.title %></h5>
-            <p class="card-text"><%= resource.description %></p>
-            <h5 class="card-url"><%= resource.url %></h5>
-            <a href="/resources/<%= resource.id%>" class="btn btn-primary">Details</a>
+            <div class="badge badge-secondary font-weight-light font-size-small"><%= resource.topic %></div>
+            <br>
+            <div class="toggle">
+              <p class="card-text"><%= resource.description %></p>
+              <hr>
+              <div class="text-center">
+                <a href="<%= resource.url %>" target="_blank" class="btn btn-sm"><i class="fas fa-link"></i> Visit</a>
+                <a href="/resources/<%= resource.id%>" class="btn btn-sm"><i class="fas fa-info-circle"></i> More</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% }) %>
+      <% }) %>
+    </div>
 
+  </div>
+
+          
 </div>
 </div>
 </div>

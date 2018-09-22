@@ -1,7 +1,7 @@
 <% include ./head.ejs %>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Resources Wall</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/resources">Resources Wall</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,26 +13,26 @@
               <a class="navbar-brand mb-0 welcome">Welcome, <%= user.name%></a>
             </li>
             <li class="nav-item">
-              <a href="/users/<%= user.id %>" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Profile"><i class="fas fa-user-circle"></i></a>
+              <a href="/users/<%= user.id %>" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Profile"><i class="fas fa-user-circle fa-lg"></i></a>
             </li>
             <li class="nav-item">
-              <a href="/users/<%= user.id %>/resources" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="My Resources"><i class="fas fa-book-open"></i></a>
+              <a href="/users/<%= user.id %>/resources" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="My Resources"><i class="fas fa-book-open fa-lg"></i></a>
             </li>
             <li class="nav-item">
-              <a href="/resources/new" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="New Resources"><i class="fas fa-plus"></i></a>
+              <a href="/resources/new" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="New Resources"><i class="fas fa-plus fa-lg"></i></a>
             </li>
             <li class="nav-item">
               <form action="/logout" method="post">
-                <button type="submit" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Logout"><i class="fas fa-sign-out-alt"></i></button>
+                <button type="submit" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Logout"><i class="fas fa-sign-out-alt fa-lg"></i></button>
               </form>
             </li>
             <li class="nav-item">
-                <a href="" id="search-icon" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Search"><i class="fas fa-search"></i></a>
+                <a href="" id="search-icon" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Search"><i class="fas fa-search fa-lg"></i></a>
             </li>
 
             <% } else { %>
-            <a href="/login" class="btn btn-warning">Login</a>
-            <a href="/register" class="btn btn-primary">Register</a>
+            <a href="/login" class="btn">Login</a>
+            <a href="/register" class="btn">Register</a>
           <% } %>
       </ul>
     </div>
@@ -59,3 +59,7 @@
       <div class="alert alert-danger" role="alert"><%= error %></div>
   </div>
 <% } %>
+
+<div id="background">
+  <!-- <img src="https://images.unsplash.com/photo-1505861728103-04440918ccfd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dec6f2c51ade412112e5a03bb0f6f91f&auto=format&fit=crop&w=1650&q=80"> -->
+</div>

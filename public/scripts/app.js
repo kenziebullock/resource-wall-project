@@ -25,6 +25,15 @@ $(document).ready(function(){
     e.preventDefault()
     console.log(e)
     $('#search-form').slideToggle();
+  });
+
+  $('.card').mouseover(function(e){
+    $(this).children('a.nav-link').removeClass('hide');
   })
+
+  $('.card').mouseout(function(e){
+    $(this).children('a.nav-link').addClass('hide');
+  })
+
 });
 
