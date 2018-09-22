@@ -6,11 +6,14 @@ const middleware = require('../middleware');
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  userHelper.countUser((err, count) => {
+    if (err) throw err;
+    res.render("index", { count });
+  })
 });
 
 app.get("/index", (req, res) => {
-    res.render("index");
+    res.redirect("/");
 });
 
 // Login Page
