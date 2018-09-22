@@ -9,7 +9,7 @@ $(document).ready(function(){
       method: 'POST'
     }).then((response) => {
       if(response.url) {
-        window.location.href = response.url
+        // window.location.href = response.url
       } else {
         const $like = $(this).next()
         $like.text(Number($like.text()) + response.increment);

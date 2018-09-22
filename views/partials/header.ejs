@@ -31,8 +31,15 @@
             </li>
 
             <% } else { %>
-            <a href="/login" class="btn">Login</a>
-            <a href="/register" class="btn">Register</a>
+            <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Login
+              </button>
+                
+                <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-modal">
+                    Register
+              </button>
           <% } %>
       </ul>
     </div>
@@ -63,3 +70,76 @@
 <div id="background">
   <!-- <img src="https://images.unsplash.com/photo-1505861728103-04440918ccfd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dec6f2c51ade412112e5a03bb0f6f91f&auto=format&fit=crop&w=1650&q=80"> -->
 </div>
+
+
+
+<!-- Modal login -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="/login" method="post">
+    
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter email">
+            </div>
+    
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+  
+  <!-- Modal register -->
+  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/register" method="post">
+            <div class="form-group">
+              <label for "fileupload">Image URL</label>
+              <input id="fileupload" type="fileupload" name="full_name" class="form-control" placeholder="Enter your Filpath">
+            </div>
+            <div class="form-group">
+              <label for="full_name">Full Name</label>
+              <input id="full_name" class="form-control" type="full_name" name="name" placeholder="Enter your Full Name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" class="form-control" type="email" name="email" placeholder="Enter an email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input id="password" class="form-control" type="password" name="password" placeholder="Enter a password" >
+            </div>
+            <button type="submit" class="btn btn-primary" align="center">Register</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div>

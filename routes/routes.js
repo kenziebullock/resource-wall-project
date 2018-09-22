@@ -18,10 +18,6 @@ app.get("/index", (req, res) => {
 
 // Login Page
 app.route('/login')
-  .get((req, res) => {
-    userHelper.loginCheck(req, res);
-    res.render('login');
-  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const user = {
@@ -39,15 +35,12 @@ app.route('/login')
 app.route('/logout')
   .post((req, res) => {
     req.session = null;
-    res.redirect('/login');
+    res.redirect('/');
   });
 
 // Registration Page
 app.route('/register')
-  .get((req, res) => {
-    userHelper.loginCheck(req, res);
-    res.render('register');
-  })
+
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
     const newUser = {
@@ -143,14 +136,14 @@ app.route('/resources/:id/comment')
     })
   });
 
-app.route('/resources/:id/rate')
-  .post((req, res) => {
-
+app.route( '/resources/:id/rate')
+  .post(middleware.isLogin, (req, res) => {
+    console.log(req.body);
       resourceHelper.newRate(req.session.user_id, req.params.id, req.body.rate, (err) => {
         if (err) {
           req.flash('error', err.message);
         } else {
-          req.flash('success', 'You have rate this resource');
+          req.flash('success', 'You have rated this resource');
         }
         res.redirect('back');
       })
@@ -164,7 +157,7 @@ app.route('/resources/:id/rate')
 app.route('/resources/:id/like')
   .post((req, res) => {
     if (!req.session.user_id) {
-      const url = '/login';
+      const url = '/';
       res.json({url});
     } else {
       resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
