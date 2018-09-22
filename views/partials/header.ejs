@@ -1,42 +1,58 @@
 <% include ./head.ejs %>
-<nav class="navbar navbar-expand-md bg-dar">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/resources">Resources Wall</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
           <% if (user) { %>
+            <li>
+              <a class="navbar-brand mb-0 welcome">Welcome, <%= user.name%></a>
+            </li>
+            <li class="nav-item">
+              <a href="/users/<%= user.id %>" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Profile"><i class="fas fa-user-circle fa-lg"></i></a>
+            </li>
+            <li class="nav-item">
+              <a href="/users/<%= user.id %>/resources" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="My Resources"><i class="fas fa-book-open fa-lg"></i></a>
+            </li>
+            <li class="nav-item">
+              <a href="/resources/new" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="New Resources"><i class="fas fa-plus fa-lg"></i></a>
+            </li>
             <li class="nav-item">
               <form action="/logout" method="post">
-                <button type="submit" class="btn">Logout </button>
+                <button type="submit" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Logout"><i class="fas fa-sign-out-alt fa-lg"></i></button>
               </form>
             </li>
             <li class="nav-item">
-              <form action="/users/<%= user.id %>" method="get">
-                <button type="submit" class="btn">Profile</button>
-              </form>
+                <a href="" id="search-icon" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Search"><i class="fas fa-search fa-lg"></i></a>
             </li>
-            <li class="nav-item">
-              <a href="/users/<%= user.id %>/resources" class="btn">My Posts</a>
-            </li>
-            <li class="nav-item"></li>
-              <a href="/resources/new" class="btn">New Post</a>
-            </li>
-            <li>
-              <span class="navbar-brand mb-0 h1">Welcome, <%= user.name%></span>
-            </li>
-          <% } else { %>
-            <a href="/login" class="btn btn-warning">Login</a>
-            <a href="/register" class="btn btn-primary">Register</a>
+
+            <% } else { %>
+            <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Login
+              </button>
+                
+                <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-modal">
+                    Register
+              </button>
           <% } %>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0" for="query" action="/resources/search" method="get">
-          <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search">
-          <button class="btn my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-</nav>
+      </ul>
+    </div>
+  </nav>
+  <br>
+    <div class="container" id="search-form">
+      <form action="/resources/search" method="get">
+        <div class="form-group">
+          <input type="search" name="query" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
 
 <% if (success && success.length > 0) { %>
   <br>
@@ -50,3 +66,80 @@
       <div class="alert alert-danger" role="alert"><%= error %></div>
   </div>
 <% } %>
+
+<div id="background">
+  <!-- <img src="https://images.unsplash.com/photo-1505861728103-04440918ccfd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dec6f2c51ade412112e5a03bb0f6f91f&auto=format&fit=crop&w=1650&q=80"> -->
+</div>
+
+
+
+<!-- Modal login -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="/login" method="post">
+    
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter email">
+            </div>
+    
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+  
+  <!-- Modal register -->
+  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/register" method="post">
+            <div class="form-group">
+              <label for "fileupload">Image URL</label>
+              <input id="fileupload" type="fileupload" name="full_name" class="form-control" placeholder="Enter your Filpath">
+            </div>
+            <div class="form-group">
+              <label for="full_name">Full Name</label>
+              <input id="full_name" class="form-control" type="full_name" name="name" placeholder="Enter your Full Name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" class="form-control" type="email" name="email" placeholder="Enter an email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input id="password" class="form-control" type="password" name="password" placeholder="Enter a password" >
+            </div>
+            <button type="submit" class="btn btn-primary" align="center">Register</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div>

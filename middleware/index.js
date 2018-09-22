@@ -16,7 +16,7 @@ const middleware = {
         return next();
       } else {
         req.flash("error", "Duplicated Email. Please login");
-        res.redirect('/login');
+        res.redirect('/');
       }
     })
   },
@@ -48,7 +48,7 @@ const middleware = {
         return next();
       } else {
         req.flash("error", "Invalid Password or Email");
-        res.redirect('/login')
+        res.redirect('/')
       }
     })
   },
@@ -58,7 +58,7 @@ const middleware = {
       return next();
     } else{
       req.flash("error", "Sorry, You need to login first");
-      res.redirect('/login');
+      res.redirect('/');
     }
   },
 }

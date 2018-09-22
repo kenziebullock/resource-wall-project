@@ -1,16 +1,5 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-
-// });
-
 $(document).ready(function(){
+
   $('i[data-likes]').on('click', function() {
     
     const likeState = { resource_id: $(this).attr('data-likes') };
@@ -20,7 +9,7 @@ $(document).ready(function(){
       method: 'POST'
     }).then((response) => {
       if(response.url) {
-        window.location.href = response.url
+        // window.location.href = response.url
       } else {
         const $like = $(this).next()
         $like.text(Number($like.text()) + response.increment);
@@ -28,5 +17,24 @@ $(document).ready(function(){
     })
     
   });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+
+  $('#search-icon').click(function(e){
+    e.preventDefault()
+    console.log(e)
+    $('#search-form').slideToggle();
+  });
+
+  $('.card').mouseover(function(e){
+    $(this).children('a.nav-link').removeClass('hide');
+  })
+
+  $('.card').mouseout(function(e){
+    $(this).children('a.nav-link').addClass('hide');
+  })
+
 });
 

@@ -6,19 +6,18 @@ const middleware = require('../middleware');
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  userHelper.countUser((err, count) => {
+    if (err) throw err;
+    res.render("index", { count });
+  })
 });
 
 app.get("/index", (req, res) => {
-    res.render("index");
+    res.redirect("/");
 });
 
 // Login Page
 app.route('/login')
-  .get((req, res) => {
-    userHelper.loginCheck(req, res);
-    res.render('login');
-  })
 
   .post(middleware.errorCheck, middleware.userAuthentication, (req, res) => {
     const user = {
@@ -36,15 +35,12 @@ app.route('/login')
 app.route('/logout')
   .post((req, res) => {
     req.session = null;
-    res.redirect('/login');
+    res.redirect('/');
   });
 
 // Registration Page
 app.route('/register')
-  .get((req, res) => {
-    userHelper.loginCheck(req, res);
-    res.render('register');
-  })
+
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
     // registration
     const newUser = {
@@ -140,14 +136,14 @@ app.route('/resources/:id/comment')
     })
   });
 
-app.route('/resources/:id/rate')
-  .post((req, res) => {
-
+app.route( '/resources/:id/rate')
+  .post(middleware.isLogin, (req, res) => {
+    console.log(req.body);
       resourceHelper.newRate(req.session.user_id, req.params.id, req.body.rate, (err) => {
         if (err) {
           req.flash('error', err.message);
         } else {
-          req.flash('success', 'You have rate this resource');
+          req.flash('success', 'You have rated this resource');
         }
         res.redirect('back');
       })
@@ -161,7 +157,7 @@ app.route('/resources/:id/rate')
 app.route('/resources/:id/like')
   .post((req, res) => {
     if (!req.session.user_id) {
-      const url = '/login';
+      const url = '/';
       res.json({url});
     } else {
       resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
@@ -173,7 +169,7 @@ app.route('/resources/:id/like')
 // User profile page
 
 app.route('/users/:id')
-  .get((req, res) => {
+  .get(middleware.isLogin, (req, res) => {
 
     // function to get user profile page
     const currentUser = {
@@ -182,7 +178,9 @@ app.route('/users/:id')
     }
 
     userHelper.getUser(currentUser, (user) => {
-      res.render('profile', {user: user});
+      resourceHelper.showMyResources(currentUser.id, (myResources) => {
+        res.render('profile', { user, myResources });
+      })
     })
   });
 

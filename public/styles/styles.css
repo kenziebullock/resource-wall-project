@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');
+
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -5,9 +7,12 @@ html {
 
 body {
   margin: 0;
-  /*background-image: url('bookImg.jpg');
-  background-size: cover;
-  background-blend-mode:hard-light;*/
+  font-family: 'Comfortaa', cursive;
+}
+
+html, body {
+  position: relative;
+  height: 100%;
 }
 
 header, nav, section {
@@ -24,13 +29,16 @@ h1 {
   color: white; }
 
 .navbar {
-  color: #800000;
-  background-color: #778899; }
+  color: #fff;
 
-.btn {
-  background-color: #800000  ;
+}
+
+.navbar .btn {
+
   color: white;
-  margin: 0 5px; }
+  background: transparent;
+  margin: 0 5px; 
+}
 
 .search {
   padding: 25px 20px;
@@ -50,9 +58,9 @@ h1 {
   .login input {
     padding: 10px; }
 
-  .login button {
-    background-color: #800000 ;
-     }
+  /* .login button {
+    background-color: #EC7272 ;
+     } */
 
   .login label {
     font-size: 1.2em; }
@@ -69,8 +77,8 @@ h1 {
   .register input {
     padding: 10px; }
 
-  .register button {
-    background-color: #800000  ; }
+  /* .register button { */
+    /* background-color: #EC7272  ; } */
 
   .register label {
     font-size: 1.2em; }
@@ -80,35 +88,187 @@ h1 {
   max-width: 950px;
   margin: 0 auto;
 }
-
 /* Create_resources*/
-
 .newform {
   font-weight: 900;
   border-radius: 5px;
-/*  background-color: #80d5ff;
-*/  margin: 20px auto;
-  padding: 65px; }
-
+  margin: 20px auto;
+  padding: 65px; 
 }
+
+
 .newform input {
     padding: 10px; }
 
 .newform button {
-    background-color: #800000  ;
+    /* background-color: #EC7272  ; */
     float: center;
-
-
   }
-
-  .newform label {
+.newform label {
     font-size: 1.2em; }
 
    /* resources */
-.resources .card-header-tabs{
-    background-color: #800000  ;
 
+   .resources .text{
+width: 18rem;
+margin-top: 85px;
+text-align: left;
 }
+/* .resources .card-header-tabs{
+    background-color: #EC7272  ;
+
+} */
 .resources .btn-primary{
   float: left;
+}
+
+.resources .fa-heart {
+  transition: font-size .3s;
+  color: red;
+}
+
+.resources .like {
+  color: red;
+}
+
+.resources .fa-heart:hover {
+  font-size: 1.3em;
+}
+
+.card {
+  border: 1px solid #ddd;
+  background: transparent;
+  margin: 10px 0px;
+  transition: background .4s, box-shadow .4s;
+}
+
+.card:hover {
+  /* background: #ecdbff; */
+  -webkit-box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
+
+}
+
+.card-body {
+  padding-bottom: 0;
+}
+
+
+.card a.nav-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+}
+
+
+li.nav-item form {
+  margin-bottom: 0;
+}
+
+li.nav-item {
+  line-height: 10px;
+}
+
+.card-body p {
+  font-size: .8em;
+}
+
+.welcome {
+  padding-top:0
+}
+
+#search-form {
+  display: none;
+}
+
+#background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-position: bottom;
+  background-size: cover;
+  /* background-image: url('https://images.unsplash.com/photo-1529243526159-303ff337d22b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=79f00cfb89ca95f8a64a8fdf60e0fb5b&auto=format&fit=crop&w=1650&q=80'); */
+  top:0;
+}
+
+.hide {
+  display: none;
+}
+
+.card-columns {
+  max-width: 75%;
+}
+
+.font-size-small {
+  font-size: .6em;
+}
+
+hr {
+  margin: 0 0 2px 0;
+}
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+.clear-float {
+  clear: both;
+}
+
+.rate-button {
+  margin-top: 0.75em;
+}
+
+.resource-field {
+  padding-right: 4em;
+}
+
+.resource-field img {
+  width: 100%;
+  height: auto;
+}
+
+.comment {
+  padding: .7em;
+  margin: 3px auto;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 991px) {
+  .card-columns {
+    max-width: 100%;
+  }
 }

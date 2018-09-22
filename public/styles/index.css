@@ -1,0 +1,114 @@
+body.index {
+  background: #000;
+}
+
+nav.navbar {
+  color: #fff;
+  z-index: 1;
+  background: #000;
+}
+
+nav form {
+  margin-bottom: 0px;
+}
+
+.brand {
+  position: relative;
+  top: 20vh;
+  color: #fff;
+  z-index: 1;
+  text-align: center;
+}
+
+.brand h1 {
+  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.brand a {
+  transition: font-size .5s;
+}
+
+.brand a:hover {
+  font-size: 2em;
+}
+
+.slideshow {
+  /*style the entire ul position to occupy the entire body with no margin */
+  position: fixed; /*fixed : position relative to the window*/
+  top:0;
+  left:0;
+  margin: 0;
+  padding:0;
+  z-index:0;
+  /*style the size of entire ul to make it cover the screen*/
+  width: 100%;
+  height: 100%;
+  /*we don't want the bullet point*/
+  list-style: none;
+}
+/*in order to make li cover the entire browzer screen, its parent element ul has to be styled first*/
+
+.slideshow li {
+  position: absolute; /*absolute : position to its first non-static parent*/
+  top: 0;
+  left: 0;
+  margin:0;
+  padding:0;
+  /*size of li (background picture)*/
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  /*set the background image to make it cover the entire browzer*/
+  background-position: 50% 50%; /*center the image*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0; /*want the background image to start fading in*/
+  animation: imageAnimation 50s linear infinite;
+  /*animation property contains: name, duration, time-function, iteration-count, dirction etc*/
+}
+
+/*set the image of each animation element (li)*/
+/*we need to set animation delay otherwise all 5 image will start animating at the same time*/
+.slideshow li:nth-child(1){
+  background-image:url("../img/bg1.jpeg");
+}
+
+.slideshow li:nth-child(2){
+  background-image:url("../img/bg2.jpeg");
+  animation-delay: 10s;
+}
+
+.slideshow li:nth-child(3){
+  background-image:url("../img/bg3.jpeg");
+  animation-delay: 20s;
+}
+
+.slideshow li:nth-child(4){
+  background-image:url("../img/bg4.jpeg");
+  animation-delay: 30s;
+}
+
+.slideshow li:nth-child(5){
+  background-image:url("../img/bg5.jpeg");
+  animation-delay: 40s;
+}
+
+@keyframes imageAnimation {
+  0% {
+      opacity: 0;
+      animation-timing-function: ease-in;
+  }
+  
+  10% {
+      opacity: 1;
+      animation-timing-function: ease-in-out;
+  }
+  
+  20% {
+      opacity: 1;
+  }
+  
+  30% {
+      opacity: 0;
+  }
+}

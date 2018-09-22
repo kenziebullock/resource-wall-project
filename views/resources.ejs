@@ -1,32 +1,46 @@
 <% include ./partials/header.ejs %>
 
-<div class="container resources">
-  <div class="row">
+<div   class="container resources">
+  <div class="row justify-content-center">
+    <div class="card-columns">
+      <% allResources.forEach(function(resource, index) { %>
+    <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+    </div> -->
+        <div class="card">
+          <img class="card-img-top" src="<%= resource.img %>" alt="Card image cap">
+          <a class="nav-link active hide" href="#">
+            <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+            <span class="like"><%= resource.likes %></span>
+            <span>
+                <% if (resource.avg) { %>
+                  <% for ( i = 0; i < resource.avg; i += 1){ %>
+                    <i class="fas fa-star"></i>
+                  <% } %>
+                <% } else { %>
+                  <i class="far fa-star"></i>
+                <% } %>
+              </span>
+          </a>
+          <div class="card-body">
+            <h5 class="card-title"><%= resource.title %></h5>
+            <div class="badge badge-secondary font-weight-light font-size-small"><%= resource.topic %></div>
+            <br>
+            <div class="toggle">
+              <p class="card-text"><%= resource.description %></p>
+              <hr>
+              <div class="text-center">
+                <a href="<%= resource.url %>" target="_blank" class="btn btn-sm"><i class="fas fa-link"></i> Visit</a>
+                <a href="/resources/<%= resource.id%>" class="btn btn-sm"><i class="fas fa-info-circle"></i> More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
 
-    <% allResources.forEach(function(resource, index) { %>
-  <div class="col-sm-4">
-  <tbody>
-    <div class="card text-center" style="width: 18rem;margin-top: 85px">
-      <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-        <a class="nav-link active" href="#"><i class="fa fa-heart" data-likes="<%=  resource.id %>"></i><span><%= resource.likes %></span></a>
-        </li>
-          <li class="nav-item">
-        <a class="nav-link" href="http://google.com">Rate</a>
-        </li>
-    </ul>
   </div>
-    <div class="card-body">
-      <h5 class="card-title"><%= resource.title %></h5>
-        <p class="card-text"><%= resource.description %></p>
-        <h5 class="card-url"><%= resource.url %></h5>
-          <a href="#" class="btn btn-primary">Comment</a>
-      </div>
-    </div>
-    </div>
-<% }) %>
-</tbody>
+
+          
 </div>
 </div>
 </div>

@@ -1,20 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <% include partials/head %>
-  <% include partials/header %>
-  <title>Profile</title>
-</head>
+<% include partials/header %>
+
 
 <body>
-  <h2>Profile</h2>
-  <ul style="margin-top: 4em">
-    <li><%= user.name %></li>
-    <li><%= user.email %></li>
-    <li><%= user.avatar %></li>
-  </ul>
-  <form action="/users/<%=user.id%>/update" method="get">
-    <button type="submit" class="btn">Edit</button>
-  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+          <h2>Profile</h2>
+            <img src='<%= user.avatar %>' />
+            <h4><%= user.name %></h4>
+            <h5><a href="mailto:<%= user.email %>"><%= user.email %></a></h5>
+          <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Edit Profile
+      </button>
+      </div>
+      <div class="col-sm-8">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Topic</th>
+                  <th scope="col">URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% myResources.forEach(function(resource,index) { %>
+                <tr>
+                  <th scope="row"><a href="/resources/<%= resource.id%>"><%= index + 1 %></a></th>
+                  <td><%= resource.title %></td>
+                  <td><%= resource.topic %></td>
+                  <td><a href="<%= resource.url %>" target="_blank"><%= resource.url %></a></td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <img style="margin: 0 auto; width: 10%" src="<%= user.avatar %>">
+            &nbsp; Update Profile
+          </h5>
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/users/<%=user.id%>/update" method="POST">
+            <label for "fileupload">Image URL</label>          
+            <input class="form-control" id="fileupload" type="fileupload" name="avatar" placeholder="Enter your Filpath" value="<%= user.avatar%>" required><br/>
+            <label for="full_name">Full Name</label>
+            <input class="form-control" id="full_name" type="full_name" name="name" placeholder="Enter your Full Name" value="<%= user.name%>" required> <br/>
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="email" name="email" placeholder="Enter an email" value="<%= user.email%>" required> <br/>
+            <label>Password</label>
+            <input class="form-control" type="password" placeholder="******" required>
+            <br>  
+            <button class="btn btn-sm btn-success">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
