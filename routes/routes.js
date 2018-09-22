@@ -47,7 +47,7 @@ app.route('/register')
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      avatar: req.body.avatar
+      avatar: req.body.avatar || 'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png'
     }
     userHelper.generateUser(newUser, (id) => {
       req.session.email = newUser.email;
@@ -187,15 +187,15 @@ app.route('/users/:id')
 // User update/edit page
 
 app.route('/users/:id/update')
-  .get((req, res) => {
-    const currentUser = {
-      id: req.session.user_id,
-      user_id: req.params.id
-    }
-    userHelper.getUser(currentUser, (user) => {
-      res.render('update_profile', {user: user});
-    })
-  })
+  // .get((req, res) => {
+  //   const currentUser = {
+  //     id: req.session.user_id,
+  //     user_id: req.params.id
+  //   }
+  //   userHelper.getUser(currentUser, (user) => {
+  //     res.render('update_profile', {user: user});
+  //   })
+  // })
   .post((req, res) => {
     const updatedUserInfo = {
       name: req.body.name,
@@ -206,8 +206,9 @@ app.route('/users/:id/update')
     }
 
     userHelper.updateUser(updatedUserInfo, () => {
-      // req.session.email = newUser.email;
-      res.render('profile', {user: updatedUserInfo});
+      resourceHelper.showMyResources(updatedUserInfo.id, (myResources) => {
+        res.render('profile', {user: updatedUserInfo, myResources: myResources});
+      })
     })
   })
 

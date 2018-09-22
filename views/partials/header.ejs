@@ -10,7 +10,7 @@
       <ul class="navbar-nav ml-auto">
           <% if (user) { %>
             <li>
-              <a class="navbar-brand mb-0 welcome">Welcome, <%= user.name%></a>
+              <a class="navbar-brand mb-0 welcome"><%= user.name%></a>
             </li>
             <li class="nav-item">
               <a href="/users/<%= user.id %>" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Profile"><i class="fas fa-user-circle fa-lg"></i></a>
@@ -32,7 +32,7 @@
 
             <% } else { %>
             <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">
                   Login
               </button>
                 
@@ -40,6 +40,7 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register-modal">
                     Register
               </button>
+              <a href="" id="search-icon" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Search"><i class="fas fa-search fa-lg"></i></a>
           <% } %>
       </ul>
     </div>
@@ -48,7 +49,7 @@
     <div class="container" id="search-form">
       <form action="/resources/search" method="get">
         <div class="form-group">
-          <input type="search" name="query" class="form-control" placeholder="Search">
+          <input type="search" name="query" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
@@ -74,7 +75,7 @@
 
 
 <!-- Modal login -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
