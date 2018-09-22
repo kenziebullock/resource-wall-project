@@ -53,8 +53,10 @@ app.route('/register')
       password: req.body.password,
       avatar: req.body.avatar
     }
-    userHelper.generateUser(newUser, () => {
+    userHelper.generateUser(newUser, (id) => {
       req.session.email = newUser.email;
+      req.session.user_id = id;
+      console.log(req.session);
       res.redirect('/resources');
     })
   });
@@ -84,6 +86,20 @@ app.route('/resources/new')
 
   });
 
+// route for search
+app.route('/resources/search')
+  .get((req, res) => {
+    // search
+    let query = req.query.query;
+    query = query.split(' ');
+    resourceHelper.search(query, (err, results) => {
+      if (err){
+        req.flash('error', err.message);
+      }
+      res.render('resources', { allResources: results });
+    })
+  })
+
 // View all resources
 
 app.route('/resources')
@@ -109,28 +125,37 @@ app.route('/resources/:id')
 
 // Comment/Like/Rate specific resource
 
-app.route(middleware.isLogin, '/resources/:id/comment')
-  .post((req, res) => {
+app.route('/resources/:id/comment')
+  .post(middleware.isLogin, (req, res) => {
 
     //function to create comment on resource
     const comment = req.body.comment;
     const resourceId = req.params.id;
     const userId = req.session.user_id;
+
     resourceHelper.newComment(userId, resourceId, comment, (thisComment, thisUser) => {
       req.flash("success", ` You Have Added A Comment `);
       // this will replace with ajax instane call
-      res.redirect('/resources/:id');
+      res.redirect('back');
     })
   });
 
 app.route('/resources/:id/rate')
   .post((req, res) => {
 
+      resourceHelper.newRate(req.session.user_id, req.params.id, req.body.rate, (err) => {
+        if (err) {
+          req.flash('error', err.message);
+        } else {
+          req.flash('success', 'You have rate this resource');
+        }
+        res.redirect('back');
+      })
     // function to add rating
-    const rate = req.body.rate;
-    resourceHelper.newRate(rate, () => {
-      res.redirect('/resources/:id');
-    })
+    // const rate = req.body.rate;
+    // resourceHelper.newRate(rate, () => {
+    //   res.redirect('/resources/:id');
+    // })
   });
 
 app.route('/resources/:id/like')
