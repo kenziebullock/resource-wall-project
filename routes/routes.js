@@ -176,7 +176,7 @@ app.route('/resources/:id/like')
 // User profile page
 
 app.route('/users/:id')
-  .get((req, res) => {
+  .get(middleware.isLogin, (req, res) => {
 
     // function to get user profile page
     const currentUser = {
@@ -185,7 +185,9 @@ app.route('/users/:id')
     }
 
     userHelper.getUser(currentUser, (user) => {
-      res.render('profile', {user: user});
+      resourceHelper.showMyResources(currentUser.id, (myResources) => {
+        res.render('profile', { user, myResources });
+      })
     })
   });
 
