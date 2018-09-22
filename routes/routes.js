@@ -86,6 +86,20 @@ app.route('/resources/new')
 
   });
 
+// route for search
+app.route('/resources/search')
+  .get((req, res) => {
+    // search
+    let query = req.query.query;
+    query = query.split(' ');
+    resourceHelper.search(query, (err, results) => {
+      if (err){
+        req.flash('error', err.message);
+      }
+      res.render('resources', { allResources: results });
+    })
+  })
+
 // View all resources
 
 app.route('/resources')
