@@ -82,9 +82,10 @@ h1 {
   font-weight: 900;
   border-radius: 5px;
   margin: 20px auto;
-  padding: 65px; }
-
+  padding: 65px; 
 }
+
+
 .newform input {
     padding: 10px; }
 
@@ -131,3 +132,22 @@ text-align: left;
 .card a {
   text-align: right;
 }
+
+
+li.nav-item form {
+  margin-bottom: 0;
+}
+
+li.nav-item {
+  line-height: 10px;
+}
+
+.welcome {
+  padding-top:0
+}
+
+#search-form {
+  display: none;
+}
+
+

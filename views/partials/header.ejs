@@ -1,42 +1,51 @@
 <% include ./head.ejs %>
-<nav class="navbar navbar-expand-md bg-dar">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Resources Wall</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
           <% if (user) { %>
+            <li>
+              <a class="navbar-brand mb-0 welcome">Welcome, <%= user.name%></a>
+            </li>
+            <li class="nav-item">
+              <a href="/users/<%= user.id %>" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Profile"><i class="fas fa-user-circle"></i></a>
+            </li>
+            <li class="nav-item">
+              <a href="/users/<%= user.id %>/resources" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="My Resources"><i class="fas fa-book-open"></i></a>
+            </li>
+            <li class="nav-item">
+              <a href="/resources/new" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="New Resources"><i class="fas fa-plus"></i></a>
+            </li>
             <li class="nav-item">
               <form action="/logout" method="post">
-                <button type="submit" class="btn">Logout </button>
+                <button type="submit" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Logout"><i class="fas fa-sign-out-alt"></i></button>
               </form>
             </li>
             <li class="nav-item">
-              <form action="/users/<%= user.id %>" method="get">
-                <button type="submit" class="btn">Profile</button>
-              </form>
+                <a href="" id="search-icon" class="btn" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Search"><i class="fas fa-search"></i></a>
             </li>
-            <li class="nav-item">
-              <a href="/users/<%= user.id %>/resources" class="btn">My Resources</a>
-            </li>
-            <li class="nav-item">
-              <a href="/resources/new" class="btn">New Resource</a>
-            </li>
-            <li>
-              <span class="navbar-brand mb-0 h1">Welcome, <%= user.name%></span>
-            </li>
-          <% } else { %>
+
+            <% } else { %>
             <a href="/login" class="btn btn-warning">Login</a>
             <a href="/register" class="btn btn-primary">Register</a>
           <% } %>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0" for="query" action="/resources/search" method="get">
-          <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search">
-          <button class="btn my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-</nav>
+      </ul>
+    </div>
+  </nav>
+  <br>
+    <div class="container" id="search-form">
+      <form action="/resources/search" method="get">
+        <div class="form-group">
+          <input type="search" name="query" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
 
 <% if (success && success.length > 0) { %>
   <br>

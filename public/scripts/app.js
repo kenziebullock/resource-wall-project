@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $('i[data-likes]').on('click', function() {
     
     const likeState = { resource_id: $(this).attr('data-likes') };
@@ -15,5 +16,15 @@ $(document).ready(function(){
       }
     })
   });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+
+  $('#search-icon').click(function(e){
+    e.preventDefault()
+    console.log(e)
+    $('#search-form').slideToggle();
+  })
 });
 
