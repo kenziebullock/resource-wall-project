@@ -5,9 +5,6 @@ html {
 
 body {
   margin: 0;
-  /*background-image: url('bookImg.jpg');
-  background-size: cover;
-  background-blend-mode:hard-light;*/
 }
 
 header, nav, section {
@@ -80,14 +77,11 @@ h1 {
   max-width: 950px;
   margin: 0 auto;
 }
-
 /* Create_resources*/
-
 .newform {
   font-weight: 900;
   border-radius: 5px;
-/*  background-color: #80d5ff;
-*/  margin: 20px auto;
+  margin: 20px auto;
   padding: 65px; }
 
 }
@@ -97,14 +91,17 @@ h1 {
 .newform button {
     background-color: #800000  ;
     float: center;
-
-
   }
-
-  .newform label {
+.newform label {
     font-size: 1.2em; }
 
    /* resources */
+
+   .resources .text{
+width: 18rem;
+margin-top: 85px;
+text-align: left;
+}
 .resources .card-header-tabs{
     background-color: #800000  ;
 
@@ -113,3 +110,8 @@ h1 {
   float: left;
 }
 
+
+.resources .fa-heart:hover {
+  border: 1px solid #888;
+  background-color: red !important;
+}
