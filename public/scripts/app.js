@@ -26,6 +26,7 @@ $(document).ready(function(){
         $like.text(Number($like.text()) + response.increment);
       }
     })
+    
   });
 });
 
