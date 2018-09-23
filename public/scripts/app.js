@@ -12,9 +12,16 @@ $(document).ready(function(){
         // window.location.href = response.url
       } else {
         const $like = $(this).next()
-        $like.text(Number($like.text()) + response.increment);
+        const likeCount = $like.text(Number($like.text()) + response.increment);
+        if(likeCount.text() > 0) {
+          $(this).addClass('fa').removeClass('far');
+        } else {
+          $(this).addClass('far').removeClass('fa');
+        }
       }
     })
+    // this will prevent going back to the top of the page
+    return false;
   });
 
   $(function () {
@@ -66,6 +73,7 @@ $(document).ready(function(){
         
     }); 
 
+    // toggle back-to-top bottom based on y-value
     if($(window).scrollTop() > $(window).height()){
       $('.back-to-top').fadeIn()
     }else {

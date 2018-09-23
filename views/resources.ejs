@@ -10,7 +10,11 @@
           <div class="card hideme">          
             <img class="card-img-top" src="<%= resource.img%>>" alt="Card image cap">
             <a class="nav-link active hide" href="#">
-              <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% if (resource.likes) { %>
+                <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% } else { %>
+                <i class="far fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% } %>
               <span class="like"><%= resource.likes %></span>
               <span>
                   <% if (resource.avg) { %>
