@@ -266,13 +266,26 @@ hr {
   word-break: break-word;
 }
 
+
+.hideme
+{
+  opacity:0;
+}
+
+.back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  font-size: 3em;
+}
+
 @media screen and (max-width: 991px) {
   .card-columns {
     max-width: 100%;
   }
-}
 
-.hideme
-{
-    opacity:0;
+  .back-to-top {
+    font-size: 2em;
+  }
 }

@@ -48,7 +48,7 @@ $(document).ready(function(){
     }    
   }); 
 
-
+  // animate loading 
   $(window).scroll( function(){
 
     /* Check the location of each desired element */
@@ -65,6 +65,22 @@ $(document).ready(function(){
         }
         
     }); 
+
+    if($(window).scrollTop() > $(window).height()){
+      $('.back-to-top').fadeIn()
+    }else {
+      $('.back-to-top').fadeOut()
+    }
+
+  });
+
+  
+
+  $(".back-to-top").on('click', function(event) {
+
+    $('html, body').animate({
+      scrollTop: 0
+    }, 400)
 
   });
 });
