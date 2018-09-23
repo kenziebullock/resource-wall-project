@@ -79,4 +79,7 @@ INSERT INTO resources (title, topic, description, url, user_id) VALUES
 ('12 Outdoor Survival Skills Every Guy Should Master', 'Outdoor', 'Sure, you’re in decent shape, and your iPhone has GPS and an app for everything. But what happens when you’re injured or stranded and the batteries die? You need a few key skills for the inevitable moment when you find—or lose—yourself without that digital crutch.', 'https://www.mensjournal.com/health-fitness/12-outdoor-survival-skills-every-guy-should-master/', 1),
 ('PMP', 'Business Management', 'The Project Management Professional (PMP)® is the most important industry-recognized certification for project managers.', 'https://www.pmi.org/', 2);
 
+INSERT INTO likes (user_id, resource_id) VALUES
+(2,1), (3,1), (4,1), (5,1), (6,1), (7,1), (8,1);
+
 
