@@ -8,8 +8,15 @@ $(document).ready(function(){
       data: likeState,
       method: 'POST'
     }).then((response) => {
-      if(response.url) {
-        // window.location.href = response.url
+      if(response.message) {
+        const $message = $('<div />').addClass('alert alert-danger').text(response.message).attr('role', 'alert');
+        $($message).attr('id', 'err-like-message')
+        $(this).before($message);
+        setTimeout(function() {
+          $('#err-like-message').fadeOut(1500, function() {
+            $(this).remove();
+          });
+        }, 1000)
       } else {
         const $like = $(this).next()
         const likeCount = $like.text(Number($like.text()) + response.increment);

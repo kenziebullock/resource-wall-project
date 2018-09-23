@@ -151,8 +151,8 @@ app.route( '/resources/:id/rate')
 app.route('/resources/:id/like')
   .post((req, res) => {
     if (!req.session.user_id) {
-      const url = '/';
-      res.json({url});
+      const message = 'Guest cannot Like';
+      res.json({message});
     } else {
       resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
         res.json({increment})

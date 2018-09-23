@@ -272,6 +272,11 @@ hr {
   opacity:0;
 }
 
+#err-like-message {
+  line-height: 1em;
+  box-shadow: 4px 4px 4px #000;
+}
+
 .back-to-top {
   cursor: pointer;
   position: fixed;

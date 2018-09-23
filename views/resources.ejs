@@ -7,7 +7,7 @@
         <% allResources.forEach(function(resource, index) { %>
           <!-- start from 4th element apply hideme class for scroll -->
 
-          <div class="card hideme">          
+          <div class="card hideme" data-resourceId="<%= resource.id %>">          
             <img class="card-img-top" src="<%= resource.img%>>" alt="Card image cap">
             <a class="nav-link active hide" href="#">
               <% if (resource.likes) { %>
