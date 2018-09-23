@@ -42,7 +42,7 @@ app.route('/logout')
 app.route('/register')
 
   .post(middleware.errorCheck, middleware.registerValidator, (req, res) => {
-    // registration
+    // registratino
     const newUser = {
       name: req.body.name,
       email: req.body.email,

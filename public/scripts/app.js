@@ -33,5 +33,39 @@ $(document).ready(function(){
   $('.card').mouseout(function(e){
     $(this).children('a.nav-link').addClass('hide');
   })
+
+  /* show top element when load */
+  $('.hideme').each( function(i){
+      
+    var top_of_object = $(this).offset().top;
+    // + $(this).outerHeight();
+    var bottom_of_window = $(window).scrollTop() + $(window).height();
+    
+    /* If the object is completely visible in the window, fade it it */
+    if( bottom_of_window > top_of_object ){
+        
+        $(this).removeClass('hideme');       
+    }    
+  }); 
+
+
+  $(window).scroll( function(){
+
+    /* Check the location of each desired element */
+    $('.hideme').each( function(i){
+        
+        var middle_of_object = $(this).offset().top + $(this).outerHeight() / 2;
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
+        
+        /* If the object is completely visible in the window, fade it it */
+        if( bottom_of_window > middle_of_object ){
+            
+            $(this).animate({'opacity':'1'},500);
+                
+        }
+        
+    }); 
+
+  });
 });
 
