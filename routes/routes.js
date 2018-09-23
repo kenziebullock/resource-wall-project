@@ -167,7 +167,7 @@ app.route('/users/:id')
 
     // function to get user profile page
     const currentUser = {
-      id: req.session.user_i,
+      id: req.session.user_id,
       user_id: req.params.id
     }
 
