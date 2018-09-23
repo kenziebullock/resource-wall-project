@@ -3,6 +3,7 @@ const app = express.Router();
 const userHelper = require('../lib/user-helper');
 const resourceHelper = require('../lib/resource-helper');
 const middleware = require('../middleware');
+const moment = require('moment');
 
 // Home page
 app.get("/", (req, res) => {
@@ -113,6 +114,9 @@ app.route('/resources/:id')
 
     const resourceId = req.params.id;
     resourceHelper.getResource(resourceId, (resource, comments) => {
+      comments.forEach((comment) => {
+        comment.created_at = moment(comment.created_at).fromNow();
+      });
       res.render('main', { resource: resource, comments: comments });
     })
   });

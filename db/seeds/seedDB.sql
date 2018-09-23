@@ -43,6 +43,7 @@ CREATE TABLE resources (
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     text VARCHAR(255),
+    created_at BIGINT,
     user_id INTEGER REFERENCES users(id),
     resource_id INTEGER REFERENCES resources(id)
 );
