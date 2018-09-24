@@ -52,7 +52,6 @@ app.route('/register')
     userHelper.generateUser(newUser, (id) => {
       req.session.email = newUser.email;
       req.session.user_id = id;
-      console.log(req.session);
       res.redirect('/resources');
     })
   });
@@ -65,7 +64,6 @@ app.route('/resources/new')
   })
 
   .post(middleware.isLogin, (req, res) => {
-    console.log(req.body);
     // function to create new resource
     const newResource = {
       title: req.body.title,
@@ -147,11 +145,7 @@ app.route( '/resources/:id/rate')
         }
         res.redirect('back');
       })
-    // function to add rating
-    // const rate = req.body.rate;
-    // resourceHelper.newRate(rate, () => {
-    //   res.redirect('/resources/:id');
-    // })
+
   });
 
 app.route('/resources/:id/like')
@@ -161,7 +155,7 @@ app.route('/resources/:id/like')
       res.json({url});
     } else {
       resourceHelper.newLike(req.session.user_id, req.body.resource_id, (err, increment) => {
-        res.json({increment});
+        res.json({increment})
       });
     }
   });
@@ -173,7 +167,7 @@ app.route('/users/:id')
 
     // function to get user profile page
     const currentUser = {
-      id: req.session.user_id,
+      id: req.session.user_i,
       user_id: req.params.id
     }
 

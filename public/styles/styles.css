@@ -23,9 +23,6 @@ h1 {
   margin: .67em 0; }
 
   .navbar-toggler {
-  width: 40px;
-  height: 40px;
-  background-color: #ff3641;
   color: white; }
 
 .navbar {
@@ -180,6 +177,8 @@ li.nav-item {
 }
 
 #search-form {
+  position: relative;
+  z-index: 1;
   display: none;
 }
 
