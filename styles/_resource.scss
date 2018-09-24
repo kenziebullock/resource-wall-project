@@ -32,18 +32,19 @@
     float: left;
   }
 
-  .fa-heart {
-    transition: font-size .3s;
-    color: red;
-  }
+}
 
-  .like {
-    color: red;
-  }
+.fa-heart {
+  transition: font-size .3s;
+  color: red;
+}
 
-  .fa-heart:hover {
-    font-size: 1.3em;
-  }
+.like {
+  color: red;
+}
+
+.fa-heart:hover {
+  font-size: 1.3em;
 }
 
     

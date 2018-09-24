@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="refresh" content="7; URL=/"> 
+  <meta name="keywords" content="automatic redirection">
+  <title>Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+  <style>
+    div.info {
+      position: relative;
+      top: 3vh;
+      margin: 0 auto;
+      max-width: 80vw;
+      height: auto;
+      text-align: center;
+    }
+
+    div.info img {
+      width: 50%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="info">
+    <h1>Oh! Page Not Found</h1>
+    <img src="https://images.unsplash.com/photo-1512227395252-27af259c80d6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e972309d8450de9240a1a5a45af3b92a&auto=format&fit=crop&w=1567&q=80">
+    <h3><a href="/">Redirecting You In <strong id="countdown">7</strong> Second </a></h3>
+  </div>
+
+  <script type="text/javascript">
+    $(window).on('load',function() {
+      setInterval(function(){
+        const num = Number($('#countdown').text()) - 1;
+        $('#countdown').text(num);
+      }, 1000)
+    })
+  </script>
+</body>
+</html>

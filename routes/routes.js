@@ -4,6 +4,7 @@ const userHelper = require('../lib/user-helper');
 const resourceHelper = require('../lib/resource-helper');
 const middleware = require('../middleware');
 const moment = require('moment');
+const path = require('path');
 
 // Home page
 app.get("/", (req, res) => {
@@ -220,7 +221,7 @@ app.route('/users/:id/resources')
   })
 
 app.route('/*').get((req, res) => {
-    res.send('404 Page not found');
+    res.sendFile('404.html', { root: path.join(__dirname, '../public') });
   });
 
 module.exports = app;
