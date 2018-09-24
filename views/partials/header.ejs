@@ -68,12 +68,6 @@
   </div>
 <% } %>
 
-<div id="background">
-  <!-- <img src="https://images.unsplash.com/photo-1505861728103-04440918ccfd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dec6f2c51ade412112e5a03bb0f6f91f&auto=format&fit=crop&w=1650&q=80"> -->
-</div>
-
-
-
 <!-- Modal login -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -89,12 +83,12 @@
     
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" name="email" class="form-control" placeholder="Enter email">
+              <input type="email" name="email" class="form-control" placeholder="Enter email" required>
             </div>
     
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Password">
+              <input type="password" name="password" class="form-control" placeholder="Password" required>
             </div>
     
             <button type="submit" class="btn btn-primary">Log in</button>
@@ -127,15 +121,15 @@
             </div>
             <div class="form-group">
               <label for="full_name">Full Name</label>
-              <input id="full_name" class="form-control" type="full_name" name="name" placeholder="Enter your Full Name">
+              <input id="full_name" class="form-control" type="full_name" name="name" placeholder="Enter your Full Name" required>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" class="form-control" type="email" name="email" placeholder="Enter an email">
+              <input id="email" class="form-control" type="email" name="email" placeholder="Enter an email" required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input id="password" class="form-control" type="password" name="password" placeholder="Enter a password" >
+              <input id="password" class="form-control" type="password" name="password" placeholder="Enter a password" required>
             </div>
             <button type="submit" class="btn btn-primary" align="center">Register</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -2,7 +2,7 @@
 <body>
 
   <main class="container">
-    <div class="row>"
+    <div class="row">
       <h2 class="col-12"><%= resource.title %></h2>
 
     </div>
@@ -47,7 +47,8 @@
             <div class="comment">
               <p><%= comments[i].text %></p>
               <small>
-                  - <%= comments[i].name %>
+                <strong><%= comments[i].created_at%></strong>
+                  -  <%= comments[i].name %>
               </small>
             </div>
             <hr>

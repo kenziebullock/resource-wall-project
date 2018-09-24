@@ -1,0 +1,78 @@
+@import 'index';
+@import 'nav';
+@import 'rate';
+@import 'resource';
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');
+
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Comfortaa', cursive;
+}
+
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+header, nav, section {
+  display: block; }
+
+h1 {
+  font-size: 2em;
+  margin: .67em 0; }
+
+hr {
+  margin: 0 0 2px 0;
+}
+
+#background {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-position: bottom;
+  background-size: cover;
+  /* background-image: url('https://images.unsplash.com/photo-1529243526159-303ff337d22b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=79f00cfb89ca95f8a64a8fdf60e0fb5b&auto=format&fit=crop&w=1650&q=80'); */
+  top:0;
+}
+
+.hide {
+  display: none;
+}
+
+.font-size-small {
+  font-size: .6em;
+}
+
+.hideme
+{
+  opacity:0;
+}
+
+#err-like-message {
+  line-height: 1em;
+  box-shadow: 4px 4px 4px #000;
+}
+
+.back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  font-size: 3em;
+}
+
+@media screen and (max-width: 991px) {
+  .card-columns {
+    max-width: 100%;
+  }
+
+  .back-to-top {
+    font-size: 2em;
+  }
+}

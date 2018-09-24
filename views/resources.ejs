@@ -5,12 +5,16 @@
     <% if (allResources.length > 0) { %>
       <div class="card-columns">
         <% allResources.forEach(function(resource, index) { %>
-      <!-- <div class="col-md-3 col-sm-6 col-xs-12">
-      </div> -->
-          <div class="card">
-            <img class="card-img-top" src="<%= resource.img %>" alt="Card image cap">
+          <!-- start from 4th element apply hideme class for scroll -->
+
+          <div class="card hideme" data-resourceId="<%= resource.id %>">          
+            <img class="card-img-top" src="<%= resource.img%>>" alt="Card image cap">
             <a class="nav-link active hide" href="#">
-              <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% if (resource.likes) { %>
+                <i class="fa fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% } else { %>
+                <i class="far fa-heart" data-likes="<%=  resource.id %>"></i>
+              <% } %>
               <span class="like"><%= resource.likes %></span>
               <span>
                   <% if (resource.avg) { %>
@@ -47,9 +51,10 @@
       </div>
     <% } %>
 
-  </div>
+  </div>       
+</div>
 
-          
+<div class="back-to-top hide">
+  <i class="far fa-arrow-alt-circle-up"></i>
 </div>
-</div>
-</div>
+
