@@ -37,7 +37,7 @@ h1 {
 
   color: white;
   background: transparent;
-  margin: 0 5px; 
+  margin: 0 5px;
 }
 
 .search {
@@ -93,7 +93,7 @@ h1 {
   font-weight: 900;
   border-radius: 5px;
   margin: 20px auto;
-  padding: 65px; 
+  padding: 65px;
 }
 
 
@@ -231,11 +231,11 @@ hr {
   content: '★ ';
 }
 .rate > input:checked ~ label {
-  color: #ffc700;    
+  color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-  color: #deb217;  
+  color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,

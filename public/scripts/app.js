@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
   $('i[data-likes]').on('click', function() {
-    
+
     const likeState = { resource_id: $(this).attr('data-likes') };
     $.ajax({
-      url: `/resources/${$(this).attr('data-likes')}/like`, 
+      url: `/resources/${$(this).attr('data-likes')}/like`,
       data: likeState,
       method: 'POST'
     }).then((response) => {
