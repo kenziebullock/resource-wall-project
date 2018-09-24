@@ -1,0 +1,62 @@
+.navbar {
+  color: #fff;
+
+  .btn {
+    border: 0px;
+    color: white;
+    background: transparent;
+    margin: 0 5px; 
+  }
+
+  
+}
+
+.navbar-toggler {
+  color: white; 
+}
+
+.search {
+  padding: 25px 20px;
+  margin: 0;
+  width: 400px; 
+
+  input {
+    width: 150px; 
+  }
+}
+
+.login{
+  font-weight: 900;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 65px; 
+
+  input {
+    padding: 10px; 
+  }
+
+  label {
+    font-size: 1.2em;
+  }
+}
+
+.register {
+  font-weight: 900;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 65px; 
+
+  input {
+    padding: 10px; 
+  }
+
+  label {
+    font-size: 1.2em; 
+  }
+}
+
+#search-form {
+  position: relative;
+  z-index: 1;
+  display: none;
+}
