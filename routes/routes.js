@@ -64,7 +64,7 @@ app.route('/resources/new')
     res.render('create_resource');
   })
 
-  .post(middleware.isLogin, (req, res) => {
+  .post(middleware.isLogin, middleware.postingValidator, (req, res) => {
     // function to create new resource
     const newResource = {
       title: req.body.title,
@@ -124,7 +124,7 @@ app.route('/resources/:id')
 // Comment/Like/Rate specific resource
 
 app.route('/resources/:id/comment')
-  .post(middleware.isLogin, (req, res) => {
+  .post(middleware.isLogin, middleware.postingValidator, (req, res) => {
 
     //function to create comment on resource
     const comment = req.body.comment;

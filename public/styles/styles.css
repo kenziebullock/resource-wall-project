@@ -31,7 +31,7 @@ h1 {
 }
 
 .navbar .btn {
-
+  border: 0px;
   color: white;
   background: transparent;
   margin: 0 5px; 

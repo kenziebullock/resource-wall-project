@@ -61,6 +61,15 @@ const middleware = {
       res.redirect('/');
     }
   },
+
+  postingValidator: (req, res, next) => {
+    if (!req.body.comment && !req.body.url && !req.body.title && !req.body.topic) {
+      req.flash('error', 'You did not post anything');
+      res.redirect('back');
+    } else {
+      return next();
+    }
+  }
 }
 
 
