@@ -1,14 +1,5 @@
 \c midterm labber
 
-<<<<<<< HEAD
--- DELETE FROM likes;
--- DELETE FROM rates;
--- DELETE FROM comments;
--- DELETE FROM resources;
--- DELETE FROM users;
-
--- ALTER TABLE resources ALTER COLUMN description TYPE TEXT;
-=======
 DROP TABLE likes;
 DROP TABLE rates;
 DROP TABLE comments;
@@ -22,7 +13,6 @@ CREATE TABLE users (
   password VARCHAR(255),
   avatar VARCHAR(255)
 );
->>>>>>> 3cd133fbb816e2d1ed2911b34a6de45725f81654
 
 INSERT INTO users (name, email, password, avatar) VALUES
 ('Alice', 'alice@gmail.com', 'alice', 'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png'),
@@ -73,13 +63,6 @@ CREATE TABLE likes (
 
 
 INSERT INTO resources (title, topic, description, url, user_id) VALUES 
-<<<<<<< HEAD
-('jQuery', 'Web Development', 'A feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. ', 'https://jquery.com/', 3),
-('ReactJS', 'Web Development', 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.', 'https://reactjs.org/', 3),
-('Express', 'Web Development', 'Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.', 'https://expressjs.com/', 3),
-('Six Sigma', 'Business Management', 'Six Sigma is a disciplined, data-driven approach and methodology for eliminating defects (driving toward six standard deviations between the mean and the nearest specification limit) in any process – from manufacturing to transactional and from product to service.', 'https://www.isixsigma.com', 4),
-('PMP', 'Business Management', 'The Project Management Professional (PMP)® is the most important industry-recognized certification for project managers.', 'https://www.pmi.org/', 4);
-=======
 ('jQuery', 'Web Development', 'A feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. ', 'https://jquery.com/', 1),
 ('ReactJS', 'Web Development', 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.', 'https://reactjs.org/', 1),
 ('Express', 'Web Development', 'Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.', 'https://expressjs.com/', 1),
@@ -99,6 +82,5 @@ INSERT INTO resources (title, topic, description, url, user_id) VALUES
 
 INSERT INTO likes (user_id, resource_id) VALUES
 (2,1), (3,1), (4,1), (5,1), (6,1), (7,1), (8,1);
->>>>>>> 3cd133fbb816e2d1ed2911b34a6de45725f81654
 
 

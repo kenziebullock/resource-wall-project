@@ -27,12 +27,8 @@ $(document).ready(function(){
         }
       }
     })
-<<<<<<< HEAD
-    
-=======
     // this will prevent going back to the top of the page
     return false;
->>>>>>> 3cd133fbb816e2d1ed2911b34a6de45725f81654
   });
 
   $(function () {
