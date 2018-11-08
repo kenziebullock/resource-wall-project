@@ -4,8 +4,8 @@ Midterm project for Lighthouse Labs. A fully functioning full-stack pinterest cl
 
 ## Final Product
 
-![](ui_ux.gif)
-![](view_search.gif)
+![](public/ui_ux.gif)
+![](public/view_search.gif)
 
 ## Dependencies
 
