@@ -7,7 +7,7 @@
 
     </div>
     <div class="row">
-      
+
       <div class="col-md-8 resource-field">
         <img src="<%= resource.img %>" width="500" height="333">
         <br><br>
@@ -25,13 +25,13 @@
                 <label for="star2" title="text">2 stars</label>
                 <input type="radio" id="star1" name="rate" value="1" />
                 <label for="star1" title="text">1 star</label>
-                
+
               </div>
               <button type="submit" class="btn btn-success btn-sm rate-button">Rate</button>
             </form>
         </div>
-        
-        
+
+
       </div>
       <div class="col-md-4">
         <form method="POST" action="/resources/<%=resource.id %>/comment" class="">
